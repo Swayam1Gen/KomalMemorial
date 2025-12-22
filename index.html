@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOMAL MEMORIAL | Fund for Animal Rescue (F.A.R.)</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700;900&display=swap"
-        rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -26,11 +25,7 @@
             --color-white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-secondary);
@@ -39,611 +34,118 @@
             color: var(--color-dark-grey);
             line-height: 1.6;
             font-size: 16px;
-            overflow-x: hidden;
+            overflow-x: hidden; 
         }
 
         /* --- TYPOGRAPHY --- */
-        h1 {
-            font-family: var(--font-primary);
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
+        h1 { font-family: var(--font-primary); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+        h2 { font-family: var(--font-secondary); font-weight: var(--weight-regular); color: var(--color-dark-grey); }
+        h3 { font-family: var(--font-secondary); font-weight: var(--weight-black); color: var(--color-blue); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        h2 {
-            font-family: var(--font-secondary);
-            font-weight: var(--weight-regular);
-            color: var(--color-dark-grey);
-        }
-
-        h3 {
-            font-family: var(--font-secondary);
-            font-weight: var(--weight-black);
-            color: var(--color-blue);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* --- BUTTONS --- */
         .btn {
-            display: inline-block;
-            padding: 12px 35px;
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-weight: var(--weight-medium);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            text-align: center;
+            display: inline-block; padding: 12px 35px; border-radius: 5px;
+            font-family: var(--font-secondary); font-weight: var(--weight-medium);
+            text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;
+            cursor: pointer; transition: all 0.3s ease; border: none; text-align: center;
         }
-
-        .btn-primary {
-            background-color: var(--color-blue);
-            color: white;
-            border: 2px solid var(--color-blue);
-        }
-
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--color-blue);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background-color: white;
-            color: var(--color-blue);
-        }
-
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
+        .btn-primary { background-color: var(--color-blue); color: white; border: 2px solid var(--color-blue); }
+        .btn-primary:hover { background-color: transparent; color: var(--color-blue); }
+        .btn-secondary { background-color: transparent; color: white; border: 2px solid white; }
+        .btn-secondary:hover { background-color: white; color: var(--color-blue); }
+        .btn-block { display: block; width: 100%; }
 
         /* --- HEADER --- */
-        header {
-            background-color: var(--color-white);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--color-blue);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-secondary);
-            font-size: 1.5rem;
-            font-weight: var(--weight-black);
-            color: var(--color-blue);
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: var(--weight-medium);
-            color: var(--color-dark-grey);
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-blue);
-        }
+        header { background-color: var(--color-white); padding: 20px 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--color-blue); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-secondary); font-size: 1.5rem; font-weight: var(--weight-black); color: var(--color-blue); text-transform: uppercase; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: var(--weight-medium); color: var(--color-dark-grey); font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--color-blue); }
 
         /* --- HERO --- */
-        .hero {
-            background: linear-gradient(rgba(25, 149, 210, 0.4), rgba(77, 77, 77, 0.7)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 35px;
-            font-weight: var(--weight-light);
-            max-width: 800px;
-            margin: 0 auto 35px auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
+        .hero { background: linear-gradient(rgba(25, 149, 210, 0.4), rgba(77, 77, 77, 0.7)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero h1 { font-size: 4rem; color: white; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .hero p { font-size: 1.5rem; margin-bottom: 35px; font-weight: var(--weight-light); max-width: 800px; margin: 0 auto 35px auto; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; }
 
         /* --- SECTIONS --- */
-        .inspiration {
-            padding: 100px 0;
-            background-color: var(--color-white);
-        }
+        .inspiration { padding: 100px 0; background-color: var(--color-white); }
+        .inspiration-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .inspiration-text h2 { font-size: 3rem; margin-bottom: 25px; line-height: 1.2; }
+        .inspiration-text p { margin-bottom: 20px; color: var(--color-dark-grey); font-size: 1.1rem; }
+        .inspiration-img { width: 100%; height: 450px; background-color: #eee; border-radius: 5px; overflow: hidden; position: relative; box-shadow: 15px 15px 0px var(--color-blue); }
+        .inspiration-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .inspiration-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        .quotes-section { padding: 80px 0; background-color: var(--color-blue); color: white; text-align: center; }
+        .quotes-section h2 { color: white; font-size: 3rem; margin-bottom: 15px; }
+        .intro-text { max-width: 800px; margin: 0 auto 50px auto; font-size: 1.2rem; }
+        .quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .quote-card { background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 5px; border-left: 4px solid var(--color-white); }
+        .quote-card p { font-family: var(--font-secondary); font-style: italic; font-size: 1.2rem; font-weight: var(--weight-light); }
+        .quote-date { display: block; margin-top: 20px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
 
-        .inspiration-text h2 {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
+        .mission { padding: 100px 0; text-align: center; background-color: var(--color-white); }
+        .mission h2 { font-size: 3rem; margin-bottom: 20px; }
+        .mission-intro { max-width: 800px; margin: 0 auto 60px auto; font-size: 1.1rem; }
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .mission-card { background: var(--color-light-grey); padding: 40px 25px; border-radius: 5px; transition: transform 0.3s; }
+        .mission-card:hover { transform: translateY(-10px); background: #e0e0e0; }
+        .mission-card i { font-size: 3rem; color: var(--color-blue); margin-bottom: 25px; }
+        .mission-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--color-dark-grey); font-weight: var(--weight-black); }
 
-        .inspiration-text p {
-            margin-bottom: 20px;
-            color: var(--color-dark-grey);
-            font-size: 1.1rem;
-        }
+        .help-section { padding: 100px 0; background-color: var(--color-white); border-top: 5px solid var(--color-blue); }
+        .help-header { text-align: center; margin-bottom: 60px; }
+        .help-header h2 { font-size: 3rem; }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: start; }
+        .option-col { background: var(--color-light-grey); padding: 40px; text-align: center; border-radius: 5px; border: none; }
+        .option-col i { font-size: 2.5rem; color: var(--color-blue); margin-bottom: 20px; }
+        .option-col h3 { margin-bottom: 15px; font-weight: var(--weight-black); color: var(--color-dark-grey); font-size: 1.5rem; }
+        .option-col p { margin-bottom: 25px; color: var(--color-dark-grey); }
 
-        .inspiration-img {
-            width: 100%;
-            height: 450px;
-            background-color: #eee;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 15px 15px 0px var(--color-blue);
-        }
-
-        .inspiration-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .quotes-section {
-            padding: 80px 0;
-            background-color: var(--color-blue);
-            color: white;
-            text-align: center;
-        }
-
-        .quotes-section h2 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .intro-text {
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            font-size: 1.2rem;
-        }
-
-        .quote-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .quote-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 5px;
-            border-left: 4px solid var(--color-white);
-        }
-
-        .quote-card p {
-            font-family: var(--font-secondary);
-            font-style: italic;
-            font-size: 1.2rem;
-            font-weight: var(--weight-light);
-        }
-
-        .quote-date {
-            display: block;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .mission {
-            padding: 100px 0;
-            text-align: center;
-            background-color: var(--color-white);
-        }
-
-        .mission h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .mission-intro {
-            max-width: 800px;
-            margin: 0 auto 60px auto;
-            font-size: 1.1rem;
-        }
-
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .mission-card {
-            background: var(--color-light-grey);
-            padding: 40px 25px;
-            border-radius: 5px;
-            transition: transform 0.3s;
-        }
-
-        .mission-card:hover {
-            transform: translateY(-10px);
-            background: #e0e0e0;
-        }
-
-        .mission-card i {
-            font-size: 3rem;
-            color: var(--color-blue);
-            margin-bottom: 25px;
-        }
-
-        .mission-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--color-dark-grey);
-            font-weight: var(--weight-black);
-        }
-
-        .help-section {
-            padding: 100px 0;
-            background-color: var(--color-white);
-            border-top: 5px solid var(--color-blue);
-        }
-
-        .help-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .help-header h2 {
-            font-size: 3rem;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            align-items: start;
-        }
-
-        .option-col {
-            background: var(--color-light-grey);
-            padding: 40px;
-            text-align: center;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .option-col i {
-            font-size: 2.5rem;
-            color: var(--color-blue);
-            margin-bottom: 20px;
-        }
-
-        .option-col h3 {
-            margin-bottom: 15px;
-            font-weight: var(--weight-black);
-            color: var(--color-dark-grey);
-            font-size: 1.5rem;
-        }
-
-        .option-col p {
-            margin-bottom: 25px;
-            color: var(--color-dark-grey);
-        }
-
-        /* Donation Form */
-        .donation-form {
-            text-align: left;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: var(--color-dark-grey);
-            font-size: 0.9rem;
-        }
-
-        .amount-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .amount-btn {
-            padding: 10px 5px;
-            border: 2px solid var(--color-blue);
-            background: transparent;
-            color: var(--color-blue);
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .amount-btn:hover,
-        .amount-btn.active {
-            background: var(--color-blue);
-            color: white;
-        }
-
-        .custom-amount-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .currency-symbol {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-dark-grey);
-            font-weight: bold;
-        }
-
-        .custom-input {
-            width: 100%;
-            padding: 12px 15px 12px 35px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-            background-color: white;
-        }
-
-        .custom-input:focus {
-            border-color: var(--color-blue);
-        }
-
+        /* Donation Form - Simplified */
+        .donation-form { text-align: left; margin-top: 25px; padding-top: 20px; border-top: 1px solid #ccc; }
+        
         /* --- MODAL STYLES --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 8px;
-            padding: 40px;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            border-top: 5px solid var(--color-blue);
-        }
-
-        .modal-overlay.active .modal-container {
-            transform: translateY(0);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .modal-close:hover {
-            color: var(--color-dark-grey);
-        }
-
-        .modal-title {
-            font-family: var(--font-secondary);
-            font-weight: var(--weight-black);
-            color: var(--color-blue);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .modal-form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .modal-input:focus {
-            border-color: var(--color-blue);
-        }
-
-        .modal-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-container { background: white; width: 90%; max-width: 500px; border-radius: 8px; padding: 40px; position: relative; transform: translateY(20px); transition: transform 0.3s ease; border-top: 5px solid var(--color-blue); }
+        .modal-overlay.active .modal-container { transform: translateY(0); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
+        .modal-close:hover { color: var(--color-dark-grey); }
+        .modal-title { font-family: var(--font-secondary); font-weight: var(--weight-black); color: var(--color-blue); font-size: 1.8rem; margin-bottom: 20px; text-align: center; }
+        
+        .modal-form-group { margin-bottom: 20px; text-align: left; }
+        .modal-input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 5px; font-family: var(--font-secondary); font-size: 1rem; outline: none; }
+        .modal-input:focus { border-color: var(--color-blue); }
+        .modal-textarea { resize: vertical; min-height: 100px; }
 
         /* --- TICKER --- */
-        .ticker-section-wrap {
-            width: 100%;
-            background-color: var(--color-light-grey);
-            padding: 15px 0;
-            border-top: 4px solid var(--color-blue);
-            border-bottom: 4px solid var(--color-blue);
-            display: flex;
-            margin-bottom: 30px;
-        }
-
-        .ticker-move {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 40s linear infinite;
-        }
-
-        .ticker-item {
-            padding: 0 4rem;
-            font-family: var(--font-secondary);
-            font-size: 1.2rem;
-            font-weight: var(--weight-bold);
-            color: var(--color-dark-grey);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .ticker-brand {
-            color: var(--color-blue);
-            font-weight: var(--weight-black);
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+        .ticker-section-wrap { width: 100%; background-color: var(--color-light-grey); padding: 15px 0; border-top: 4px solid var(--color-blue); border-bottom: 4px solid var(--color-blue); display: flex; margin-bottom: 30px; }
+        .ticker-move { display: flex; white-space: nowrap; animation: marquee 40s linear infinite; }
+        .ticker-item { padding: 0 4rem; font-family: var(--font-secondary); font-size: 1.2rem; font-weight: var(--weight-bold); color: var(--color-dark-grey); text-transform: uppercase; letter-spacing: 1px; }
+        .ticker-brand { color: var(--color-blue); font-weight: var(--weight-black); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- FOOTER --- */
-        .team {
-            padding: 80px 0;
-            background-color: var(--color-dark-grey);
-            color: white;
-            text-align: center;
-        }
-
-        .team h2 {
-            color: white;
-            font-size: 2.5rem;
-        }
-
-        .team p {
-            color: var(--color-light-grey);
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 60px 0 0 0;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .footer-quote {
-            font-family: var(--font-primary);
-            font-size: 2rem;
-            color: var(--color-blue);
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .footer-links a {
-            margin: 0 15px;
-            color: #ccc;
-            font-weight: var(--weight-medium);
-        }
-
-        .footer-links a:hover {
-            color: var(--color-blue);
-        }
+        .team { padding: 80px 0; background-color: var(--color-dark-grey); color: white; text-align: center; }
+        .team h2 { color: white; font-size: 2.5rem; }
+        .team p { color: var(--color-light-grey); }
+        footer { background-color: #333; color: white; padding: 60px 0 0 0; text-align: center; overflow: hidden; }
+        .footer-quote { font-family: var(--font-primary); font-size: 2rem; color: var(--color-blue); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-links a { margin: 0 15px; color: #ccc; font-weight: var(--weight-medium); }
+        .footer-links a:hover { color: var(--color-blue); }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .inspiration-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .inspiration-img {
-                height: 300px;
-            }
-
-            .inspiration-text h2,
-            .mission h2,
-            .help-header h2 {
-                font-size: 2.5rem;
-            }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .inspiration-content { grid-template-columns: 1fr; gap: 30px; }
+            .inspiration-img { height: 300px; }
+            .inspiration-text h2, .mission h2, .help-header h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -654,8 +156,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fas fa-paw"></i> KOMAL MEMORIAL <span
-                        style="font-size: 0.8em; color: var(--color-dark-grey);">F.A.R.</span>
+                    <i class="fas fa-paw"></i> KOMAL MEMORIAL <span style="font-size: 0.8em; color: var(--color-dark-grey);">F.A.R.</span>
                 </div>
                 <div class="nav-links">
                     <a href="#home">Home</a>
@@ -664,8 +165,7 @@
                     <a href="#volunteer">Volunteer</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
-                    class="btn btn-primary">Donate Now</a>
+                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank" class="btn btn-primary">Donate Now</a>
             </nav>
         </div>
     </header>
@@ -675,8 +175,7 @@
             <h1>Carrying Forward a Legacy of Kindness</h1>
             <p>Healing the world, one small life at a time.<br>In loving memory of our dear friend, Komal.</p>
             <div class="hero-buttons">
-                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
-                    class="btn btn-primary">Support the Fund</a>
+                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank" class="btn btn-primary">Support the Fund</a>
                 <a href="#inspiration" class="btn btn-secondary">Read Her Story</a>
             </div>
         </div>
@@ -687,15 +186,9 @@
             <div class="inspiration-content">
                 <div class="inspiration-text">
                     <h2>A Rare Soul, A Gentle Heart</h2>
-                    <p>Some people leave behind more than memories—they leave behind kindness that continues to ripple
-                        through the world. Komal was one of those rare souls: gentle, selfless, and full of love for
-                        every living being.</p>
-                    <p>As a valued member of our organization, she touched many lives, but her deepest passion was
-                        reserved for the voiceless. We still remember her dedication to the "10:10:10 initiative" in
-                        2023, where she tirelessly raised awareness for stray animals. Her compassion wasn't just an act
-                        of kindness; it was her way of healing the world.</p>
-                    <p>Although she is gone from our sight, she is never from our hearts. Through every life saved by
-                        this fund, her heart will keep beating in the world she worked to make kinder.</p>
+                    <p>Some people leave behind more than memories—they leave behind kindness that continues to ripple through the world. Komal was one of those rare souls: gentle, selfless, and full of love for every living being.</p>
+                    <p>As a valued member of our organization, she touched many lives, but her deepest passion was reserved for the voiceless. We still remember her dedication to the "10:10:10 initiative" in 2023, where she tirelessly raised awareness for stray animals. Her compassion wasn't just an act of kindness; it was her way of healing the world.</p>
+                    <p>Although she is gone from our sight, she is never from our hearts. Through every life saved by this fund, her heart will keep beating in the world she worked to make kinder.</p>
                 </div>
                 <div class="inspiration-img">
                     <img src="Komal.jpeg" alt="Portrait of Kindness">
@@ -707,18 +200,11 @@
     <section class="quotes-section">
         <div class="container">
             <h2>Where It All Started</h2>
-            <p class="intro-text">To understand the mission of this memorial fund, we look back to Komal’s own
-                passionate words from January 2023.</p>
+            <p class="intro-text">To understand the mission of this memorial fund, we look back to Komal’s own passionate words from January 2023.</p>
             <div class="quote-grid">
-                <div class="quote-card">
-                    <p>"We cannot even feel the pain of the mothers whose babies have got injured..."</p>
-                </div>
-                <div class="quote-card">
-                    <p>"In some cases, they mostly suffer and die due to their disease or infection..."</p>
-                </div>
-                <div class="quote-card">
-                    <p>"Let's be a reason for their joy."</p><span class="quote-date">— Komal, Jan 31st, 2023</span>
-                </div>
+                <div class="quote-card"><p>"We cannot even feel the pain of the mothers whose babies have got injured..."</p></div>
+                <div class="quote-card"><p>"In some cases, they mostly suffer and die due to their disease or infection..."</p></div>
+                <div class="quote-card"><p>"Let's be a reason for their joy."</p><span class="quote-date">— Komal, Jan 31st, 2023</span></div>
             </div>
         </div>
     </section>
@@ -726,21 +212,12 @@
     <section class="mission" id="mission">
         <div class="container">
             <h2>KOMAL MEMORIAL - Fund for Animal Rescue</h2>
-            <p class="mission-intro">This is our collective way to carry forward her love. F.A.R. will raise funds to
-                support verified animal rescue organizations.</p>
+            <p class="mission-intro">This is our collective way to carry forward her love. F.A.R. will raise funds to support verified animal rescue organizations.</p>
             <div class="mission-grid">
-                <div class="mission-card"><i class="fas fa-ambulance"></i>
-                    <h3>Emergency Medical Care</h3>
-                </div>
-                <div class="mission-card"><i class="fas fa-syringe"></i>
-                    <h3>Disease & Vaccinations</h3>
-                </div>
-                <div class="mission-card"><i class="fas fa-home"></i>
-                    <h3>Shelter & Rehabilitation</h3>
-                </div>
-                <div class="mission-card"><i class="fas fa-heart"></i>
-                    <h3>Adoption Campaigns</h3>
-                </div>
+                <div class="mission-card"><i class="fas fa-ambulance"></i><h3>Emergency Medical Care</h3></div>
+                <div class="mission-card"><i class="fas fa-syringe"></i><h3>Disease & Vaccinations</h3></div>
+                <div class="mission-card"><i class="fas fa-home"></i><h3>Shelter & Rehabilitation</h3></div>
+                <div class="mission-card"><i class="fas fa-heart"></i><h3>Adoption Campaigns</h3></div>
             </div>
         </div>
     </section>
@@ -758,23 +235,7 @@
                     <h3>Make a Donation</h3>
                     <p>Help us reach our fundraising goal. Every small amount counts towards saving a life.</p>
                     <div class="donation-form">
-                        <label class="form-label">Quick Select Amount (INR):</label>
-                        <div class="amount-grid">
-                            <button class="amount-btn">₹ 500</button>
-                            <button class="amount-btn">₹ 1000</button>
-                            <button class="amount-btn">₹ 2500</button>
-                        </div>
-                        <label class="form-label">Or Enter Custom Amount:</label>
-                        <div class="custom-amount-box">
-                            <span class="currency-symbol">₹</span>
-                            <input type="number" class="custom-input" placeholder="Other Amount" min="1">
-                        </div>
-                        <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
-                            class="btn btn-primary btn-block">Donate Now</a>
-                        <p style="margin-top: 15px; font-size: 0.9rem; margin-bottom: 0;">
-                            <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
-                                style="color: var(--color-blue); font-weight: 700;">Become a Monthly Donor</a>
-                        </p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank" class="btn btn-primary btn-block">Donate Now</a>
                     </div>
                 </div>
 
@@ -793,8 +254,7 @@
         <div class="container">
             <h2>Standing Together</h2>
             <br>
-            <p style="max-width: 700px; margin: 0 auto;">This initiative is led with love by Ayesha and colleagues who
-                were inspired by Komal’s dedication.</p>
+            <p style="max-width: 700px; margin: 0 auto;">This initiative is led with love by Ayesha and colleagues who were inspired by Komal’s dedication.</p>
         </div>
     </section>
 
@@ -834,7 +294,7 @@
         <div class="modal-container">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <h3 class="modal-title">Join the Team</h3>
-
+            
             <form id="volunteerForm">
                 <div class="modal-form-group">
                     <label class="form-label">Full Name</label>
@@ -850,8 +310,7 @@
                 </div>
                 <div class="modal-form-group">
                     <label class="form-label">Message / Motivation</label>
-                    <textarea id="vMessage" class="modal-input modal-textarea"
-                        placeholder="Why do you want to join?"></textarea>
+                    <textarea id="vMessage" class="modal-input modal-textarea" placeholder="Why do you want to join?"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
             </form>
@@ -868,14 +327,14 @@
             document.getElementById('volunteerModal').classList.remove('active');
         }
 
-        document.getElementById('volunteerModal').addEventListener('click', function (e) {
+        document.getElementById('volunteerModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
         // Backend Connection
-        document.getElementById('volunteerForm').addEventListener('submit', async function (e) {
+        document.getElementById('volunteerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-
+            
             const btn = this.querySelector('button');
             const originalText = btn.innerText;
             btn.innerText = "Sending...";
@@ -916,5 +375,4 @@
     </script>
 
 </body>
-
 </html>
