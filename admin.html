@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Komal Memorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-blue: #1995D2;
+            --color-dark-grey: #4D4D4D;
+            --color-light-grey: #E9E8E8;
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: var(--color-dark-grey);
+        }
+
+        /* --- LOGIN SECTION --- */
+        #login-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-blue), #0d5a7a);
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            color: var(--color-dark-grey);
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: var(--color-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #1377a8;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* --- DASHBOARD SECTION --- */
+        #dashboard-section {
+            display: none;
+            padding: 40px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--color-light-grey);
+            color: var(--color-dark-grey);
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .btn-logout {
+            background: var(--color-dark-grey);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-section">
+        <div class="login-card">
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>User ID</label>
+                    <input type="text" id="userid" placeholder="Enter User ID">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter Password">
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <p class="error-msg" id="loginError">Invalid Credentials</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-section">
+        <div class="dashboard-header">
+            <div>
+                <h2 style="margin:0;">Volunteer List</h2>
+                <p style="margin:5px 0 0 0; color:#666;">Komal Memorial F.A.R.</p>
+            </div>
+            <div onclick="logout()" class="btn-logout">Logout</div>
+        </div>
+
+        <div class="table-container">
+            <table id="volunteerTable">
+                <thead>
+                    <tr>
+                        <th>Date Registered</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // Change credentials here if needed
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "1gen2025";
+        const API_URL = "http://localhost:5000/api/volunteers";
+
+        // --- LOGIN LOGIC ---
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const user = document.getElementById('userid').value;
+            const pass = document.getElementById('password').value;
+            const errorMsg = document.getElementById('loginError');
+
+            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                // Success
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('dashboard-section').style.display = 'block';
+                fetchData(); // Load data immediately
+            } else {
+                // Fail
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        function logout() {
+            location.reload();
+        }
+
+        // --- DATA FETCHING LOGIC ---
+        async function fetchData() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading data...</td></tr>';
+
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+
+                // Clear loading message
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No volunteers found.</td></tr>';
+                    return;
+                }
+
+                // Populate Table
+                data.forEach(volunteer => {
+                    const row = `
+                        <tr>
+                            <td>${volunteer.date}</td>
+                            <td><strong>${volunteer.name}</strong></td>
+                            <td>${volunteer.email}</td>
+                            <td>${volunteer.phone}</td>
+                            <td>${volunteer.message}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Error connecting to backend. Is app.py running?</td></tr>';
+            }
+        }
+    </script>
+</body>
+
+</html>
