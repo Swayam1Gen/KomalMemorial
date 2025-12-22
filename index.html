@@ -169,7 +169,6 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            /* UPDATED IMAGE URL */
             background: linear-gradient(rgba(25, 149, 210, 0.4), rgba(77, 77, 77, 0.7)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
@@ -425,7 +424,6 @@
             transition: 0.3s;
         }
 
-        /* Style for active or hover */
         .amount-btn:hover, .amount-btn.active {
             background: var(--color-blue);
             color: white;
@@ -467,9 +465,10 @@
             background-color: var(--color-light-grey);
             padding: 15px 0;
             border-top: 4px solid var(--color-blue);
+            /* border-bottom removed if at bottom of page, or kept for style */
             border-bottom: 4px solid var(--color-blue);
             display: flex; 
-            margin-bottom: 30px; /* Space below ticker inside footer */
+            margin-top: 50px; /* Space above ticker */
         }
 
         .ticker-move {
@@ -518,8 +517,10 @@
         footer {
             background-color: #333;
             color: white;
-            padding: 60px 0;
+            /* Updated padding to accommodate content before ticker */
+            padding: 60px 0 0 0; 
             text-align: center;
+            overflow: hidden; 
         }
 
         .footer-quote {
@@ -703,7 +704,7 @@
                     <br>
                     <a href="#" class="btn btn-primary">Sign Up to Volunteer</a>
                 </div>
-
+                
                 </div>
         </div>
     </section>
@@ -723,6 +724,18 @@
     <footer id="contact">
         <div class="container">
             <p class="footer-quote">“Let's be a reason for their joy.”</p>
+            <br>
+            <h3>KOMAL MEMORIAL - F.A.R.</h3>
+            <p>An initiative by friends and colleagues in loving memory of Komal.</p>
+            <br>
+            <div class="footer-links">
+                <a href="#donate">Donate</a> |
+                <a href="#volunteer">Volunteer</a> |
+                <a href="#about">About Us</a> |
+                <a href="#contact">Contact</a>
+            </div>
+            <br>
+            <p>Contact: info@1gen.io</p>
         </div>
 
         <div class="ticker-section-wrap">
@@ -741,19 +754,6 @@
             </div>
         </div>
 
-        <div class="container">
-            <h3>KOMAL MEMORIAL - F.A.R.</h3>
-            <p>An initiative by friends and colleagues in loving memory of Komal.</p>
-            <br>
-            <div class="footer-links">
-                <a href="#donate">Donate</a> |
-                <a href="#volunteer">Volunteer</a> |
-                <a href="#about">About Us</a> |
-                <a href="#contact">Contact</a>
-            </div>
-            <br>
-            <p>Contact: info@1gen.io</p>
-        </div>
     </footer>
 
 </body>
