@@ -3,7 +3,9 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 from datetime import datetime
 
-app = Flask(__name__)
+# static_folder='.' tells Flask: "Look for HTML/Images in this same folder"
+# static_url_path='' tells Flask: "Serve them at the main URL"
+app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
 # --- DATABASE CONFIGURATION ---
@@ -57,4 +59,5 @@ def get_volunteers():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
+
     app.run(debug=True, port=5000)
