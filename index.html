@@ -198,6 +198,31 @@
         }
 
         /* --- SECTIONS --- */
+
+        /* ABOUT US SECTION */
+        .about-us {
+            padding: 100px 0;
+            background-color: var(--color-light-grey);
+            text-align: center;
+        }
+
+        .about-us h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--color-dark-grey);
+            text-align: center;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+        }
+
         .inspiration {
             padding: 100px 0;
             background-color: var(--color-white);
@@ -308,16 +333,32 @@
             gap: 30px;
         }
 
+        /* --- UPDATED CARD STYLES FOR HOVER EFFECTS --- */
         .mission-card {
             background: var(--color-light-grey);
-            padding: 40px 25px;
+            padding: 0;
             border-radius: 5px;
-            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .mission-card:hover {
-            transform: translateY(-10px);
-            background: #e0e0e0;
+        /* Default View */
+        .card-content {
+            padding: 40px 25px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
         .mission-card i {
@@ -328,9 +369,47 @@
 
         .mission-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 0;
             color: var(--color-dark-grey);
             font-weight: var(--weight-black);
+        }
+
+        /* Hover Overlay */
+        .card-hover-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-blue);
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Trigger Slide Up */
+        .mission-card:hover .card-hover-content {
+            transform: translateY(0);
+        }
+
+        .card-hover-content h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: var(--weight-bold);
+            text-transform: uppercase;
+        }
+
+        .card-hover-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: var(--weight-light);
         }
 
         .help-section {
@@ -350,7 +429,7 @@
 
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             align-items: start;
         }
@@ -361,6 +440,10 @@
             text-align: center;
             border-radius: 5px;
             border: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
         .option-col i {
@@ -381,9 +464,9 @@
             color: var(--color-dark-grey);
         }
 
-        /* --- FOOTER --- */
+        /* --- TEAM SLIDESHOW SECTION --- */
         .team {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--color-dark-grey);
             color: white;
             text-align: center;
@@ -391,13 +474,81 @@
 
         .team h2 {
             color: white;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 40px;
         }
 
-        .team p {
-            color: var(--color-light-grey);
+        /* Slideshow Container */
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+            border: 5px solid var(--color-blue);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: #000;
         }
 
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            vertical-align: middle;
+        }
+
+        .text-caption {
+            color: #f2f2f2;
+            font-size: 1.1rem;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            font-family: var(--font-secondary);
+            font-weight: var(--weight-medium);
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 2.0s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .dot-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #777;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active-dot {
+            background-color: var(--color-blue);
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: #333;
             color: white;
@@ -450,6 +601,8 @@
             color: var(--color-dark-grey);
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
         }
 
         .ticker-brand {
@@ -578,8 +731,13 @@
 
             .inspiration-text h2,
             .mission h2,
-            .help-header h2 {
+            .help-header h2,
+            .about-us h2 {
                 font-size: 2.5rem;
+            }
+
+            .mySlides img {
+                height: 300px;
             }
         }
     </style>
@@ -596,6 +754,7 @@
                 </div>
                 <div class="nav-links">
                     <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
                     <a href="#inspiration">Komal's Story</a>
                     <a href="#mission">The Mission</a>
                     <a href="#volunteer">Volunteer</a>
@@ -615,6 +774,21 @@
                 <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
                     class="btn btn-primary">Support the Fund</a>
                 <a href="#inspiration" class="btn btn-secondary">Read Her Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us" id="about">
+        <div class="container">
+            <h2>Our Origin Story</h2>
+            <div class="about-text">
+                <p>The Komal Memorial was born out of a profound loss, but fueled by a beautiful legacy. Komal was a
+                    rare soul who saw the world through the lens of compassion. To her, no animal was "just a
+                    stray"—every living being deserved dignity, a full bowl of food, and a safe place to rest.</p>
+                <p>When we lost Komal, we didn't just lose a friend and a colleague; the animal world lost one of its
+                    fiercest advocates. We established the <strong>Komal Memorial - Friends of Animal Rescue
+                        (F.A.R.)</strong> to ensure that her mission didn't end with her. We believe that by continuing
+                    her work, her heart keeps beating in every life we save.</p>
             </div>
         </div>
     </section>
@@ -666,18 +840,55 @@
             <p class="mission-intro">This is our collective way to carry forward her love. F.A.R. will raise funds to
                 support verified animal rescue organizations.</p>
             <div class="mission-grid">
-                <div class="mission-card"><i class="fas fa-ambulance"></i>
-                    <h3>Emergency Medical Care</h3>
+
+                <a href="https://1genimpact.cloud/Fundraiser5?id=694a4a5c2d96743a7bb747fd" target="_blank"
+                    class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-ambulance"></i>
+                        <h3>Emergency Medical Care</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Lifesaving Medical Aid</h3>
+                        <p>Providing urgent treatment, surgeries, and emergency care to injured and abused animals.</p>
+                    </div>
+                </a>
+
+                <a href="https://1genimpact.cloud/Fundraiser5?id=694a4e052d96743a7bb74843" target="_blank"
+                    class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-syringe"></i>
+                        <h3>Disease & Vaccinations</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Protection Through Prevention</h3>
+                        <p>Supporting vaccinations, disease treatment, and preventive healthcare to stop suffering
+                            before it starts.</p>
+                    </div>
+                </a>
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-home"></i>
+                        <h3>Shelter & Rehabilitation</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Safe Shelter & Healing</h3>
+                        <p>Offering shelter, nourishment, and rehabilitation to help rescued animals recover with
+                            dignity.</p>
+                    </div>
                 </div>
-                <div class="mission-card"><i class="fas fa-syringe"></i>
-                    <h3>Disease & Vaccinations</h3>
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-heart"></i>
+                        <h3>Adoption Campaigns</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Finding Forever Homes</h3>
+                        <p>Promoting adoption and awareness campaigns so every rescued life gets a chance at love.</p>
+                    </div>
                 </div>
-                <div class="mission-card"><i class="fas fa-home"></i>
-                    <h3>Shelter & Rehabilitation</h3>
-                </div>
-                <div class="mission-card"><i class="fas fa-heart"></i>
-                    <h3>Adoption Campaigns</h3>
-                </div>
+
             </div>
         </div>
     </section>
@@ -707,7 +918,7 @@
                     <h3>Join the Team</h3>
                     <p>We are looking for volunteers within our organization to help manage the MEMORIAL project.</p>
                     <br>
-                    <button type="button" onclick="openVolunteerModal()" class="btn btn-primary">Sign Up to
+                    <button type="button" onclick="openVolunteerModal()" class="btn btn-primary btn-block">Sign Up to
                         Volunteer</button>
                 </div>
             </div>
@@ -716,41 +927,85 @@
 
     <section class="team">
         <div class="container">
-            <h2>Standing Together for Komal</h2>
+            <h2>Standing Together</h2>
             <br>
-            <p style="max-width: 700px; margin: 0 auto;">This mission is carried forward with love by Ayesha and the
-                colleagues whose lives were forever changed by Komal’s kindness.</p>
+            <p style="color: var(--color-light-grey); margin-bottom: 40px; font-size: 1.1rem;">Led by Ayesha and Komal’s
+                colleagues, this initiative ensures her dedication to animal welfare remains a living legacy.</p>
+
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="Slide1.jpeg" alt="Team 1">
+                    <div class="text-caption">United for the Voiceless</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="Slide2.jpeg" alt="Team 2">
+                    <div class="text-caption">Volunteers in Action</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="Slide3.jpeg" alt="Team 3">
+                </div>
+            </div>
+
+            <div class="dot-container">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
     </section>
 
     <footer id="contact">
         <div class="container">
-            <p class="footer-quote">“HER KINDNESS LIVES ON THROUGH YOU”</p>
+            <p class="footer-quote">“HER KINDNESS LIVES ON THROUGH YOU.”</p>
         </div>
 
         <div class="ticker-section-wrap">
             <div class="ticker-move">
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
-                <span class="ticker-item">POWERED BY <span class="ticker-brand">1GEN IMPACT CLOUD</span></span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
             </div>
         </div>
 
         <div class="container">
             <h3>KOMAL MEMORIAL - F.A.R.</h3>
+            <p>An initiative by friends and colleagues in loving memory of Komal.</p>
             <br>
             <div class="footer-links">
                 <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank">Donate</a> |
                 <a href="#volunteer">Volunteer</a> |
                 <a href="#about">About Us</a> |
-                <a href="#contact">Contact</a>
+                <a href="mailto:info@1gen.io">Contact</a>
             </div>
             <br>
-            <p>Contact: info@1gen.io</p>
+            <p>Contact: <a href="mailto:info@1gen.io" style="color: white; text-decoration: none;">info@1gen.io</a></p>
         </div>
     </footer>
 
@@ -782,6 +1037,32 @@
     </div>
 
     <script>
+        // --- SLIDESHOW LOGIC ---
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active-dot";
+
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+
         // --- VOLUNTEER MODAL LOGIC ---
         function openVolunteerModal() {
             document.getElementById('volunteerModal').classList.add('active');
