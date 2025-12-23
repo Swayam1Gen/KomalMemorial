@@ -1153,7 +1153,7 @@
 
             try {
                 // Pointing to your local Flask backend
-                const response = await fetch('/api/register-volunteer', {
+                const response = await fetch('http://localhost:5000/api/register-volunteer', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -1191,4 +1191,3 @@
 </body>
 
 </html>
-
