@@ -1154,7 +1154,7 @@
 
             try {
                 // Adjust localhost URL if needed (e.g. 127.0.0.1 or domain)
-                const response = await fetch('http://localhost:5000/api/register-volunteer', {
+                const response = await fetch('/api/register-volunteer', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -1178,5 +1178,6 @@
     </script>
 
 </body>
+
 
 </html>
