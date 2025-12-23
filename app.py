@@ -2,20 +2,24 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from datetime import datetime
-from bson import json_util # Import this for handling MongoDB objects
 
 app = Flask(__name__)
 CORS(app)
 
 # --- DATABASE CONFIGURATION ---
+# Ensure your MongoDB is running locally on port 27017
 app.config["MONGO_URI"] = "mongodb://localhost:27017/komal_memorial"
 mongo = PyMongo(app)
 
-# 1. Route to REGISTER volunteers (Existing)
+# ---------------------------------------------------------
+# VOLUNTEER ROUTES
+# ---------------------------------------------------------
+
 @app.route('/api/register-volunteer', methods=['POST'])
 def register_volunteer():
     try:
         data = request.json
+        # Validate that required fields are present
         if not data or not all(k in data for k in ('name', 'email', 'phone')):
             return jsonify({"success": False, "message": "Missing required fields"}), 400
 
@@ -26,17 +30,18 @@ def register_volunteer():
             "message": data.get('message', ''),
             "registered_at": datetime.utcnow()
         }
+        
+        # Insert into MongoDB
         mongo.db.volunteers.insert_one(volunteer_record)
         return jsonify({"success": True, "message": "Volunteer registered successfully!"}), 201
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"success": False, "message": "Server error"}), 500
 
-# 2. NEW Route to VIEW volunteers (Add this!)
 @app.route('/api/volunteers', methods=['GET'])
 def get_volunteers():
     try:
-        # Fetch all records, sort by newest first
+        # Fetch all volunteers, sorted by newest first
         volunteers = mongo.db.volunteers.find().sort("registered_at", -1)
         output = []
         for v in volunteers:
