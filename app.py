@@ -10,7 +10,7 @@ CORS(app)
 
 # --- DATABASE CONFIGURATION ---
 # Ensure your MongoDB is running locally on port 27017
-app.config["MONGO_URI"] = "mongodb://localhost:27017/komal_memorial"
+app.config["MONGO_URI"] = "mongodb+srv://swayam_db_user:<db_password>@komalmemorial.uem6jht.mongodb.net/?appName=KomalMemorial"
 mongo = PyMongo(app)
 
 # ---------------------------------------------------------
@@ -61,3 +61,4 @@ def get_volunteers():
 if __name__ == '__main__':
 
     app.run(debug=True, port=5000)
+
