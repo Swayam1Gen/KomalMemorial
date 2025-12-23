@@ -64,6 +64,8 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             outline: none;
+            box-sizing: border-box;
+            /* Fix padding overflow */
         }
 
         .btn-login {
@@ -93,6 +95,8 @@
         #dashboard-section {
             display: none;
             padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .dashboard-header {
@@ -117,6 +121,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }
 
         th,
@@ -144,6 +149,35 @@
             text-decoration: none;
             font-size: 0.9rem;
             cursor: pointer;
+        }
+
+        /* --- PAGINATION CONTROLS --- */
+        .pagination-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .btn-page {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-page:disabled {
+            background: #eee;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            font-size: 0.9rem;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -192,14 +226,24 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="pagination-controls">
+            <span class="page-info" id="pageInfo">Page 1</span>
+            <button class="btn-page" id="btnPrev" onclick="changePage(-1)" disabled>Previous</button>
+            <button class="btn-page" id="btnNext" onclick="changePage(1)" disabled>Next</button>
+        </div>
     </div>
 
     <script>
         // --- CONFIGURATION ---
-        // Change credentials here if needed
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "1gen2025";
-        const API_URL = "/api/volunteers";
+        const API_URL = "http://localhost:5000/api/volunteers";
+
+        // State for pagination
+        let currentPage = 1;
+        const limit = 10;
+        let totalRecords = 0;
 
         // --- LOGIN LOGIC ---
         document.getElementById('loginForm').addEventListener('submit', function (e) {
@@ -209,12 +253,10 @@
             const errorMsg = document.getElementById('loginError');
 
             if (user === ADMIN_USER && pass === ADMIN_PASS) {
-                // Success
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard-section').style.display = 'block';
-                fetchData(); // Load data immediately
+                fetchData(currentPage);
             } else {
-                // Fail
                 errorMsg.style.display = 'block';
             }
         });
@@ -223,20 +265,42 @@
             location.reload();
         }
 
+        // --- PAGINATION LOGIC ---
+        function changePage(direction) {
+            currentPage += direction;
+            fetchData(currentPage);
+        }
+
         // --- DATA FETCHING LOGIC ---
-        async function fetchData() {
+        async function fetchData(page) {
             const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading data...</td></tr>';
+            const pageInfo = document.getElementById('pageInfo');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            // Show loading state
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px;">Loading data...</td></tr>';
+            btnPrev.disabled = true;
+            btnNext.disabled = true;
 
             try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
+                // Fetch with query parameters for pagination
+                const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
+                const resJson = await response.json();
 
-                // Clear loading message
+                if (!resJson.success) {
+                    throw new Error(resJson.message || "Failed to fetch");
+                }
+
+                const data = resJson.data.volunteers;
+                const pagination = resJson.data.pagination;
+                totalRecords = pagination.total_records;
+
+                // Clear table
                 tableBody.innerHTML = '';
 
                 if (data.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No volunteers found.</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px;">No volunteers found.</td></tr>';
                     return;
                 }
 
@@ -254,13 +318,21 @@
                     tableBody.innerHTML += row;
                 });
 
+                // Update Pagination Controls
+                pageInfo.innerText = `Page ${page} of ${Math.ceil(totalRecords / limit) || 1} (Total: ${totalRecords})`;
+
+                // Logic for Prev/Next buttons
+                btnPrev.disabled = page <= 1;
+                // If we have fewer items than the limit, or we reached the total count, disable Next
+                const totalPages = Math.ceil(totalRecords / limit);
+                btnNext.disabled = page >= totalPages;
+
             } catch (error) {
                 console.error("Error fetching data:", error);
-                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Error connecting to backend. Is app.py running?</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red; padding:20px;">Error connecting to backend.</td></tr>';
             }
         }
     </script>
 </body>
-
 
 </html>
