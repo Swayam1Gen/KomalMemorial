@@ -338,12 +338,13 @@
             background: var(--color-light-grey);
             padding: 0;
             border-radius: 5px;
-            cursor: pointer;
+            cursor: default;
             text-decoration: none;
             color: inherit;
             position: relative;
             overflow: hidden;
-            min-height: 250px;
+            /* FIX 1: Increased height to provide more room for content */
+            min-height: 320px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -387,9 +388,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--color-dark-grey);
+            background-color: var(--color-blue);
             color: white;
-            padding: 30px;
+            /* FIX 2: Reduced padding to give text more width/height */
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -406,16 +408,38 @@
 
         .card-hover-content h3 {
             color: white;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            /* FIX 3: Slightly reduced font size to fit better */
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             font-weight: var(--weight-bold);
             text-transform: uppercase;
         }
 
         .card-hover-content p {
-            font-size: 1rem;
+            /* FIX 4: Slightly reduced font size to fit better */
+            font-size: 0.95rem;
             line-height: 1.5;
             font-weight: var(--weight-light);
+        }
+
+        /* --- NEW READ MORE LINK STYLE --- */
+        .read-more-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--color-blue);
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: var(--weight-bold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .read-more-link:hover {
+            background-color: var(--color-light-grey);
+            transform: scale(1.05);
         }
 
         .help-section {
@@ -481,7 +505,7 @@
         .team h2 {
             color: white;
             font-size: 3rem;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
 
         /* Slideshow Container */
@@ -523,6 +547,16 @@
         .fade {
             animation-name: fade;
             animation-duration: 2.0s;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         @keyframes fade {
@@ -614,16 +648,6 @@
         .ticker-brand {
             color: var(--color-blue);
             font-weight: var(--weight-black);
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
         }
 
         /* --- VOLUNTEER MODAL STYLES --- */
@@ -869,8 +893,7 @@
                 support verified animal rescue organizations.</p>
             <div class="mission-grid">
 
-                <a href="https://1genimpact.cloud/Fundraiser5?id=694a4a5c2d96743a7bb747fd" target="_blank"
-                    class="mission-card">
+                <div class="mission-card">
                     <div class="card-content">
                         <i class="fas fa-ambulance"></i>
                         <h3>Emergency Medical Care</h3>
@@ -878,11 +901,12 @@
                     <div class="card-hover-content">
                         <h3>Lifesaving Medical Aid</h3>
                         <p>Providing urgent treatment, surgeries, and emergency care to injured and abused animals.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a4a5c2d96743a7bb747fd" target="_blank"
+                            class="read-more-link">Read More</a>
                     </div>
-                </a>
+                </div>
 
-                <a href="https://1genimpact.cloud/Fundraiser5?id=694a4e052d96743a7bb74843" target="_blank"
-                    class="mission-card">
+                <div class="mission-card">
                     <div class="card-content">
                         <i class="fas fa-syringe"></i>
                         <h3>Disease & Vaccinations</h3>
@@ -891,11 +915,12 @@
                         <h3>Protection Through Prevention</h3>
                         <p>Supporting vaccinations, disease treatment, and preventive healthcare to stop suffering
                             before it starts.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a4e052d96743a7bb74843" target="_blank"
+                            class="read-more-link">Read More</a>
                     </div>
-                </a>
+                </div>
 
-                <a href="https://1genimpact.cloud/Fundraiser5?id=694a602d2d96743a7bb74901" target="_blank"
-                    class="mission-card">
+                <div class="mission-card">
                     <div class="card-content">
                         <i class="fas fa-home"></i>
                         <h3>Shelter & Rehabilitation</h3>
@@ -904,17 +929,21 @@
                         <h3>Safe Shelter & Healing</h3>
                         <p>Offering shelter, nourishment, and rehabilitation to help rescued animals recover with
                             dignity.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a602d2d96743a7bb74901" target="_blank"
+                            class="read-more-link">Read More</a>
                     </div>
-                </a>
+                </div>
 
                 <div class="mission-card">
                     <div class="card-content">
                         <i class="fas fa-heart"></i>
-                        <h3>Adoption Campaigns</h3>
+                        <h3>Senior & Special Needs</h3>
                     </div>
                     <div class="card-hover-content">
                         <h3>Finding Forever Homes</h3>
-                        <p>Promoting adoption and awareness campaigns so every rescued life gets a chance at love.</p>
+                        <p>Dedicated comfort and long-term support for elderly or differently-abled animals.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a826e2d96743a7bb74ba4" target="_blank"
+                            class="read-more-link">Read More</a>
                     </div>
                 </div>
 
@@ -957,8 +986,8 @@
     <section class="team">
         <div class="container">
             <h2>Standing Together</h2>
-            <br>
-            <p style="color: var(--color-light-grey); margin-bottom: 40px; font-size: 1.1rem;">Led by Ayesha and Komal’s
+            <p style="color: var(--color-light-grey); margin-bottom: 40px; font-size: 1.1rem; margin-top: 0;">Led by
+                Ayesha and Komal’s
                 colleagues, this initiative ensures her dedication to animal welfare remains a living legacy.</p>
 
             <div class="slideshow-container">
