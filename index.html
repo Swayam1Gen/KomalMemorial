@@ -343,7 +343,6 @@
             color: inherit;
             position: relative;
             overflow: hidden;
-            /* FIX 1: Increased height to provide more room for content */
             min-height: 320px;
             display: flex;
             align-items: center;
@@ -390,7 +389,6 @@
             height: 100%;
             background-color: var(--color-blue);
             color: white;
-            /* FIX 2: Reduced padding to give text more width/height */
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -408,7 +406,6 @@
 
         .card-hover-content h3 {
             color: white;
-            /* FIX 3: Slightly reduced font size to fit better */
             font-size: 1.3rem;
             margin-bottom: 10px;
             font-weight: var(--weight-bold);
@@ -416,7 +413,6 @@
         }
 
         .card-hover-content p {
-            /* FIX 4: Slightly reduced font size to fit better */
             font-size: 0.95rem;
             line-height: 1.5;
             font-weight: var(--weight-light);
@@ -1083,7 +1079,8 @@
                 </div>
                 <div class="modal-form-group">
                     <label class="form-label">Phone Number</label>
-                    <input type="tel" id="vPhone" class="modal-input" placeholder="Enter your phone" required>
+                    <input type="tel" id="vPhone" class="modal-input" placeholder="Enter 10 digit number"
+                        pattern="[0-9]{10,12}" title="Please enter only digits (10-12 numbers)" required>
                 </div>
                 <div class="modal-form-group">
                     <label class="form-label">Message / Motivation</label>
@@ -1137,11 +1134,13 @@
             }
         });
 
-        // --- VOLUNTEER FORM SUBMIT ---
+        // --- VOLUNTEER FORM SUBMIT (UPDATED) ---
         document.getElementById('volunteerForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = this.querySelector('button');
             const originalText = btn.innerText;
+
+            // UI Feedback
             btn.innerText = "Sending...";
             btn.disabled = true;
 
@@ -1153,24 +1152,36 @@
             };
 
             try {
-                // Adjust localhost URL if needed (e.g. 127.0.0.1 or domain)
-                const response = await fetch('/api/register-volunteer', {
+                // Pointing to your local Flask backend
+                const response = await fetch('http://localhost:5000/api/register-volunteer', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
+
+                // Parse the standardized JSON response
                 const result = await response.json();
-                if (response.ok) {
+
+                if (result.success) {
+                    // Success case
                     alert("Thank you! " + result.message);
                     closeVolunteerModal();
                     this.reset();
                 } else {
-                    alert("Error: " + result.message);
+                    // Specific Error Handling
+                    if (response.status === 429) {
+                        alert("Please wait before trying again (Rate Limited).");
+                    } else if (response.status === 409) {
+                        alert("That Email or Phone is already registered.");
+                    } else {
+                        alert("Error: " + result.message);
+                    }
                 }
             } catch (error) {
                 console.error(error);
                 alert("Could not connect to server. Please check if app.py is running.");
             } finally {
+                // Reset Button
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
@@ -1178,6 +1189,5 @@
     </script>
 
 </body>
-
 
 </html>
