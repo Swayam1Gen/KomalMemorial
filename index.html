@@ -1022,18 +1022,16 @@
 
     <section class="about-us" id="about">
         <div class="container">
-            <h2>About Us
-                <div class="about-text">
-                    <p>The Komal Memorial was born out of a profound loss, but fueled by a beautiful legacy. Komal was a
-                        rare soul who saw the world through the lens of compassion. To her, no animal was "just a
-                        stray"—every living being deserved dignity, a full bowl of food, and a safe place to rest.</p>
-                    <p>When we lost Komal, we didn't just lose a friend and a colleague; the animal world lost one of
-                        its
-                        fiercest advocates. We established the <strong>Komal Memorial - Funds for Animal Rescue.
-                            (F.A.R.)</strong> to ensure that her mission didn't end with her. We believe that by
-                        continuing
-                        her work, her heart keeps beating in every life we save.</p>
-                </div>
+            <h2>Our Origin Story</h2>
+            <div class="about-text">
+                <p>The Komal Memorial was born out of a profound loss, but fueled by a beautiful legacy. Komal was a
+                    rare soul who saw the world through the lens of compassion. To her, no animal was "just a
+                    stray"—every living being deserved dignity, a full bowl of food, and a safe place to rest.</p>
+                <p>When we lost Komal, we didn't just lose a friend and a colleague; the animal world lost one of its
+                    fiercest advocates. We established the <strong>Komal Memorial - Friends of Animal Rescue
+                        (F.A.R.)</strong> to ensure that her mission didn't end with her. We believe that by continuing
+                    her work, her heart keeps beating in every life we save.</p>
+            </div>
         </div>
     </section>
 
@@ -1368,7 +1366,7 @@
 
             try {
                 // Pointing to your local Flask backend
-                const response = await fetch('/api/register-volunteer', {
+                const response = await fetch('http://localhost:5000/api/register-volunteer', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -1409,7 +1407,7 @@
 
         async function fetchNews() {
             try {
-                const response = await fetch('/api/news');
+                const response = await fetch('http://localhost:5000/api/news');
                 const result = await response.json();
 
                 if (result.success && result.data.length > 0) {
