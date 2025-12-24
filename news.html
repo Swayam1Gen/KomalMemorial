@@ -508,7 +508,7 @@
 
         async function fetchAllNews() {
             try {
-                const response = await fetch('http://localhost:5000/api/news');
+                const response = await fetch('/api/news');
                 const result = await response.json();
                 const grid = document.getElementById('allNewsGrid');
 
@@ -586,5 +586,6 @@
         }
     </script>
 </body>
+
 
 </html>
