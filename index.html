@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOMAL MEMORIAL | Fund for Animal Rescue (F.A.R.)</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
+        /* --- CSS VARIABLES --- */
         :root {
             --font-primary: 'Anton', sans-serif;
             --font-secondary: 'Outfit', sans-serif;
@@ -31,6 +34,7 @@
 
         body {
             font-family: var(--font-secondary);
+            font-weight: var(--weight-light);
             background-color: var(--color-white);
             color: var(--color-dark-grey);
             line-height: 1.6;
@@ -38,6 +42,7 @@
             overflow-x: hidden;
         }
 
+        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: var(--font-primary);
             font-weight: 400;
@@ -75,6 +80,7 @@
             padding: 0 20px;
         }
 
+        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
             padding: 12px 35px;
@@ -117,6 +123,7 @@
             width: 100%;
         }
 
+        /* --- HEADER --- */
         header {
             background-color: var(--color-white);
             padding: 20px 0;
@@ -156,6 +163,7 @@
             color: var(--color-blue);
         }
 
+        /* --- HERO --- */
         .hero {
             background: linear-gradient(rgba(25, 149, 210, 0.4), rgba(77, 77, 77, 0.7)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
@@ -189,6 +197,7 @@
             justify-content: center;
         }
 
+        /* --- SECTIONS --- */
         .about-us {
             padding: 100px 0;
             background-color: var(--color-light-grey);
@@ -474,6 +483,7 @@
             color: var(--color-dark-grey);
         }
 
+        /* TEAM SECTION */
         .team {
             padding: 100px 0;
             background-color: var(--color-dark-grey);
@@ -556,13 +566,15 @@
             background-color: var(--color-blue);
         }
 
-        /* --- NEWS / BLOG SECTION --- */
+        /* --- NEWS / BLOG SECTION STYLES --- */
         .news-section {
             padding: 100px 0;
             background-color: #f8f9fa;
             display: none;
+            /* Hidden by default */
         }
 
+        /* Matching Header Font Size/Weight */
         .section-header h2 {
             font-size: 3rem;
             font-weight: var(--weight-regular);
@@ -671,169 +683,7 @@
             color: white;
         }
 
-        /* --- FOOTER & TICKER --- */
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 60px 0 0 0;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .footer-quote {
-            font-family: var(--font-primary);
-            font-size: 2rem;
-            color: var(--color-blue);
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .footer-links a {
-            margin: 0 15px;
-            color: #ccc;
-            font-weight: var(--weight-medium);
-        }
-
-        .footer-links a:hover {
-            color: var(--color-blue);
-        }
-
-        .ticker-section-wrap {
-            width: 100%;
-            background-color: var(--color-light-grey);
-            padding: 15px 0;
-            border-top: 4px solid var(--color-blue);
-            border-bottom: 4px solid var(--color-blue);
-            display: flex;
-            margin-bottom: 30px;
-        }
-
-        .ticker-move {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 40s linear infinite;
-        }
-
-        .ticker-item {
-            padding: 0 4rem;
-            font-family: var(--font-secondary);
-            font-size: 1.2rem;
-            font-weight: var(--weight-bold);
-            color: var(--color-dark-grey);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-        }
-
-        .ticker-brand {
-            color: var(--color-blue);
-            font-weight: var(--weight-black);
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 8px;
-            padding: 40px;
-            position: relative;
-            border-top: 5px solid var(--color-blue);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .modal-close:hover {
-            color: var(--color-dark-grey);
-        }
-
-        .modal-title {
-            font-family: var(--font-secondary);
-            font-weight: var(--weight-black);
-            color: var(--color-blue);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .modal-form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .modal-input:focus {
-            border-color: var(--color-blue);
-        }
-
-        .modal-textarea {
-            resize: vertical;
-            min-height: 100px;
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-family: var(--font-secondary);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .modal-textarea:focus {
-            border-color: var(--color-blue);
-        }
-
-        /* Article Modal Overrides */
+        /* --- ARTICLE MODAL STYLES --- */
         #articleModal .modal-container {
             max-width: 800px;
             width: 95%;
@@ -888,6 +738,126 @@
             text-decoration: underline;
         }
 
+        .article-text ul,
+        .article-text ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* --- FOOTER & TICKER --- */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 0 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .footer-quote {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--color-blue);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: #ccc;
+            font-weight: var(--weight-medium);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-blue);
+        }
+
+        /* Updated Ticker CSS */
+        .ticker-section-wrap {
+            width: 100%;
+            background-color: var(--color-light-grey);
+            padding: 15px 0;
+            border-top: 4px solid var(--color-blue);
+            border-bottom: 4px solid var(--color-blue);
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .ticker-move {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 4rem;
+            font-family: var(--font-secondary);
+            font-size: 1.2rem;
+            font-weight: var(--weight-bold);
+            color: var(--color-dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-brand {
+            color: var(--color-blue);
+            font-weight: var(--weight-black);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- MODAL STYLES (SHARED) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            border-top: 5px solid var(--color-blue);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-close:hover {
+            color: var(--color-dark-grey);
+        }
+
         .modal-close-btn {
             position: absolute;
             top: 15px;
@@ -903,6 +873,56 @@
             text-align: center;
             line-height: 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-title {
+            font-family: var(--font-secondary);
+            font-weight: var(--weight-black);
+            color: var(--color-blue);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--color-blue);
+        }
+
+        .modal-textarea {
+            resize: vertical;
+            min-height: 100px;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .modal-textarea:focus {
+            border-color: var(--color-blue);
         }
 
         @media (max-width: 768px) {
@@ -927,6 +947,7 @@
             .mission h2,
             .help-header h2,
             .about-us h2,
+            .news-section h2,
             .section-header h2 {
                 font-size: 2.5rem;
             }
@@ -953,23 +974,32 @@
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <header>
         <div class="container">
             <nav>
-                <div class="logo"><i class="fas fa-paw"></i> KOMAL MEMORIAL <span
-                        style="font-size: 0.8em; color: var(--color-dark-grey);">F.A.R.</span></div>
+                <div class="logo">
+                    <i class="fas fa-paw"></i> KOMAL MEMORIAL <span
+                        style="font-size: 0.8em; color: var(--color-dark-grey);">F.A.R.</span>
+                </div>
                 <div class="nav-links">
                     <a href="#home">Home</a>
                     <a href="#about">About Us</a>
                     <a href="#inspiration">Komal's Story</a>
                     <a href="#mission">The Mission</a>
                     <a href="#volunteer">Volunteer</a>
-                    <a href="news.html" id="news-link" style="display:none; color: var(--color-blue);">Blog</a>
+                    <a href="news.html" id="news-link" style="display:none;">Blog</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
@@ -992,15 +1022,155 @@
 
     <section class="about-us" id="about">
         <div class="container">
-            <h2>About Us</h2>
-            <div class="about-text">
-                <p>The Komal Memorial was born out of a profound loss, but fueled by a beautiful legacy. Komal was a
-                    rare soul who saw the world through the lens of compassion. To her, no animal was "just a
-                    stray"—every living being deserved dignity, a full bowl of food, and a safe place to rest.</p>
-                <p>When we lost Komal, we didn't just lose a friend and a colleague; the animal world lost one of its
-                    fiercest advocates. We established the <strong>Komal Memorial - Friends of Animal Rescue
-                        (F.A.R.)</strong> to ensure that her mission didn't end with her. We believe that by continuing
-                    her work, her heart keeps beating in every life we save.</p>
+            <h2>About Us
+                <div class="about-text">
+                    <p>The Komal Memorial was born out of a profound loss, but fueled by a beautiful legacy. Komal was a
+                        rare soul who saw the world through the lens of compassion. To her, no animal was "just a
+                        stray"—every living being deserved dignity, a full bowl of food, and a safe place to rest.</p>
+                    <p>When we lost Komal, we didn't just lose a friend and a colleague; the animal world lost one of
+                        its
+                        fiercest advocates. We established the <strong>Komal Memorial - Funds for Animal Rescue.
+                            (F.A.R.)</strong> to ensure that her mission didn't end with her. We believe that by
+                        continuing
+                        her work, her heart keeps beating in every life we save.</p>
+                </div>
+        </div>
+    </section>
+
+    <section class="inspiration" id="inspiration">
+        <div class="container">
+            <div class="inspiration-content">
+                <div class="inspiration-text">
+                    <h2>A Rare Soul, A Gentle Heart</h2>
+                    <p>Some people leave behind more than memories—they leave behind kindness that continues to ripple
+                        through the world. Komal was one of those rare souls: gentle, selfless, and full of love for
+                        every living being.</p>
+                    <p>As a valued member of our organization, she touched many lives, but her deepest passion was
+                        reserved for the voiceless. We still remember her dedication to the "10:10:10 initiative" in
+                        2023, where she tirelessly raised awareness for stray animals. Her compassion wasn't just an act
+                        of kindness; it was her way of healing the world.</p>
+                    <p>Although she is gone from our sight, she is never from our hearts. Through every life saved by
+                        this fund, her heart will keep beating in the world she worked to make kinder.</p>
+                </div>
+                <div class="inspiration-img">
+                    <img src="Komal.jpeg" alt="Portrait of Kindness">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quotes-section">
+        <div class="container">
+            <h2>Where It All Started</h2>
+            <p class="intro-text">To understand the mission of this memorial fund, we look back to Komal’s own
+                passionate words from January 2023.</p>
+            <div class="quote-grid">
+                <div class="quote-card">
+                    <p>"We cannot even feel the pain of the mothers whose babies have got injured..."</p>
+                </div>
+                <div class="quote-card">
+                    <p>"In some cases, they mostly suffer and die due to their disease or infection..."</p>
+                </div>
+                <div class="quote-card">
+                    <p>"Let's be a reason for their joy."</p><span class="quote-date">— Komal, Jan 31st, 2023</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission" id="mission">
+        <div class="container">
+            <h2>KOMAL MEMORIAL - Fund for Animal Rescue</h2>
+            <p class="mission-intro">This is our collective way to carry forward her love. F.A.R. will raise funds to
+                support verified animal rescue organizations.</p>
+            <div class="mission-grid">
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-ambulance"></i>
+                        <h3>Emergency Medical Care</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Lifesaving Medical Aid</h3>
+                        <p>Providing urgent treatment, surgeries, and emergency care to injured and abused animals.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a4a5c2d96743a7bb747fd" target="_blank"
+                            class="read-more-link">Contribute</a>
+                    </div>
+                </div>
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-syringe"></i>
+                        <h3>Disease & Vaccinations</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Protection Through Prevention</h3>
+                        <p>Supporting vaccinations, disease treatment, and preventive healthcare to stop suffering
+                            before it starts.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a4e052d96743a7bb74843" target="_blank"
+                            class="read-more-link">Contribute</a>
+                    </div>
+                </div>
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-home"></i>
+                        <h3>Shelter & Rehabilitation</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Safe Shelter & Healing</h3>
+                        <p>Offering shelter, nourishment, and rehabilitation to help rescued animals recover with
+                            dignity.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a602d2d96743a7bb74901" target="_blank"
+                            class="read-more-link">Contribute</a>
+                    </div>
+                </div>
+
+                <div class="mission-card">
+                    <div class="card-content">
+                        <i class="fas fa-heart"></i>
+                        <h3>Senior & Special Needs</h3>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Finding Forever Homes</h3>
+                        <p>Dedicated comfort and long-term support for elderly or differently-abled animals.</p>
+                        <a href="https://1genimpact.cloud/Fundraiser5?id=694a826e2d96743a7bb74ba4" target="_blank"
+                            class="read-more-link">Contribute</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="help-section" id="donate">
+        <div class="container">
+            <div class="help-header">
+                <h2>Be A Part of Her Legacy</h2>
+                <p>Every contribution directly helps an animal in distress.</p>
+            </div>
+
+            <div class="options-grid">
+                <div class="option-col">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Make a Contribution</h3>
+                    <p>You will be redirected to our secure payment partner (1Gen Impact Cloud) to complete your
+                        donation.</p>
+                    <br>
+                    <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
+                        class="btn btn-primary btn-block">
+                        Contribute Now
+                    </a>
+                </div>
+
+                <div class="option-col" id="volunteer">
+                    <i class="fas fa-users"></i>
+                    <h3>Join the Team</h3>
+                    <p>We are looking for volunteers within our organization to help manage the MEMORIAL project.</p>
+                    <br>
+                    <button type="button" onclick="openVolunteerModal()" class="btn btn-primary btn-block">Sign Up to
+                        Volunteer</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1009,18 +1179,30 @@
         <div class="container">
             <h2>Standing Together</h2>
             <p style="color: var(--color-light-grey); margin-bottom: 40px; font-size: 1.1rem; margin-top: 0;">Led by
-                Ayesha and Komal’s colleagues, this initiative ensures her dedication to animal welfare remains a living
-                legacy.</p>
+                Ayesha and Komal’s
+                colleagues, this initiative ensures her dedication to animal welfare remains a living legacy.</p>
+
             <div class="slideshow-container">
-                <div class="mySlides fade"><img src="Slide1.jpeg" alt="Team 1">
+                <div class="mySlides fade">
+                    <img src="Slide1.jpeg" alt="Team 1">
                     <div class="text-caption">United for the Voiceless</div>
                 </div>
-                <div class="mySlides fade"><img src="Slide2.jpeg" alt="Team 2">
+
+                <div class="mySlides fade">
+                    <img src="Slide2.jpeg" alt="Team 2">
                     <div class="text-caption">Volunteers in Action</div>
                 </div>
-                <div class="mySlides fade"><img src="Slide3.jpeg" alt="Team 3"></div>
+
+                <div class="mySlides fade">
+                    <img src="Slide3.jpeg" alt="Team 3">
+                </div>
             </div>
-            <div class="dot-container"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+
+            <div class="dot-container">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
     </section>
 
@@ -1028,10 +1210,11 @@
         <div class="container">
             <div class="section-header"
                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 15px;">
-                <h2 style="margin-bottom: 0;">Latest Stories</h2>
+                <h2>Latest Stories</h2>
                 <a href="news.html" class="btn btn-primary" style="padding: 10px 25px; font-size: 0.9rem;">View All
                     Updates</a>
             </div>
+
             <div class="news-grid" id="newsGrid">
             </div>
         </div>
@@ -1041,30 +1224,49 @@
         <div class="container">
             <p class="footer-quote">“HER KINDNESS LIVES ON THROUGH YOU.”</p>
         </div>
+
         <div class="ticker-section-wrap">
             <div class="ticker-move">
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; margin-left: 15px;"></span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
+                <span class="ticker-item">
+                    POWERED BY
+                    <img src="image_2.png" alt="1Gen" style="height: 35px; vertical-align: middle; margin-left: 15px;">
+                </span>
             </div>
         </div>
+
         <div class="container">
             <h3>KOMAL MEMORIAL - F.A.R.</h3>
             <p>An initiative by friends and colleagues in loving memory of Komal.</p>
             <br>
             <div class="footer-links">
                 <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank">Donate</a> |
-                <a href="#volunteer">Volunteer</a> | <a href="#about">About Us</a> | <a
-                    href="mailto:info@1gen.io">Contact</a>
+                <a href="#volunteer">Volunteer</a> |
+                <a href="#about">About Us</a> |
+                <a href="mailto:info@1gen.io">Contact</a>
             </div>
             <br>
             <p>Contact: <a href="mailto:info@1gen.io" style="color: white; text-decoration: none;">info@1gen.io</a></p>
@@ -1075,16 +1277,25 @@
         <div class="modal-container">
             <span class="modal-close" onclick="closeVolunteerModal()">&times;</span>
             <h3 class="modal-title">Join the Team</h3>
+
             <form id="volunteerForm">
-                <div class="modal-form-group"><label class="form-label">Full Name</label><input type="text" id="vName"
-                        class="modal-input" placeholder="Enter your name" required></div>
-                <div class="modal-form-group"><label class="form-label">Email Address</label><input type="email"
-                        id="vEmail" class="modal-input" placeholder="Enter your email" required></div>
-                <div class="modal-form-group"><label class="form-label">Phone Number</label><input type="tel"
-                        id="vPhone" class="modal-input" placeholder="Enter 10 digit number" pattern="[0-9]{10,12}"
-                        title="Please enter only digits (10-12 numbers)" required></div>
-                <div class="modal-form-group"><label class="form-label">Message / Motivation</label><textarea
-                        id="vMessage" class="modal-textarea" placeholder="Why do you want to join?"></textarea></div>
+                <div class="modal-form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="vName" class="modal-input" placeholder="Enter your name" required>
+                </div>
+                <div class="modal-form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="vEmail" class="modal-input" placeholder="Enter your email" required>
+                </div>
+                <div class="modal-form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" id="vPhone" class="modal-input" placeholder="Enter 10 digit number"
+                        pattern="[0-9]{10,12}" title="Please enter only digits (10-12 numbers)" required>
+                </div>
+                <div class="modal-form-group">
+                    <label class="form-label">Message / Motivation</label>
+                    <textarea id="vMessage" class="modal-textarea" placeholder="Why do you want to join?"></textarea>
+                </div>
                 <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
             </form>
         </div>
@@ -1103,80 +1314,178 @@
     </div>
 
     <script>
-        // Slideshow
+        // --- SLIDESHOW LOGIC ---
         let slideIndex = 0;
         showSlides();
+
         function showSlides() {
-            let i; let slides = document.getElementsByClassName("mySlides"); let dots = document.getElementsByClassName("dot");
-            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
-            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active-dot", ""); }
-            slideIndex++; if (slideIndex > slides.length) { slideIndex = 1 }
-            slides[slideIndex - 1].style.display = "block"; dots[slideIndex - 1].className += " active-dot";
-            setTimeout(showSlides, 4000);
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active-dot";
+
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
         }
 
-        // Modals
-        function openVolunteerModal() { document.getElementById('volunteerModal').classList.add('active'); }
-        function closeVolunteerModal() { document.getElementById('volunteerModal').classList.remove('active'); }
-        function closeArticleModal() { document.getElementById('articleModal').classList.remove('active'); }
-        window.onclick = function (event) { if (event.target.classList.contains('modal-overlay')) { event.target.classList.remove('active'); } }
+        // --- VOLUNTEER MODAL LOGIC ---
+        function openVolunteerModal() {
+            document.getElementById('volunteerModal').classList.add('active');
+        }
 
-        // Volunteer Form
+        function closeVolunteerModal() {
+            document.getElementById('volunteerModal').classList.remove('active');
+        }
+
+        // --- VOLUNTEER FORM SUBMIT ---
         document.getElementById('volunteerForm').addEventListener('submit', async function (e) {
-            e.preventDefault(); const btn = this.querySelector('button'); const originalText = btn.innerText;
-            btn.innerText = "Sending..."; btn.disabled = true;
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+
+            // UI Feedback
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            const data = {
+                name: document.getElementById('vName').value,
+                email: document.getElementById('vEmail').value,
+                phone: document.getElementById('vPhone').value,
+                message: document.getElementById('vMessage').value
+            };
+
             try {
-                const response = await fetch('http://localhost:5000/api/register-volunteer', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: document.getElementById('vName').value, email: document.getElementById('vEmail').value, phone: document.getElementById('vPhone').value, message: document.getElementById('vMessage').value })
+                // Pointing to your local Flask backend
+                const response = await fetch('/api/register-volunteer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
                 });
+
+                // Parse the standardized JSON response
                 const result = await response.json();
-                if (result.success) { alert("Thank you! " + result.message); closeVolunteerModal(); this.reset(); }
-                else { alert(result.message); }
-            } catch (error) { alert("Server Error"); } finally { btn.innerText = originalText; btn.disabled = false; }
+
+                if (result.success) {
+                    // Success case
+                    alert("Thank you! " + result.message);
+                    closeVolunteerModal();
+                    this.reset();
+                } else {
+                    // Specific Error Handling
+                    if (response.status === 429) {
+                        alert("Please wait before trying again (Rate Limited).");
+                    } else if (response.status === 409) {
+                        alert("That Email or Phone is already registered.");
+                    } else {
+                        alert("Error: " + result.message);
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Could not connect to server. Please check if app.py is running.");
+            } finally {
+                // Reset Button
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
         });
 
-        // News Logic
-        let allNewsData = [];
+        // --- NEWS LOGIC ---
+        let allNewsData = []; // Store data locally
+
         document.addEventListener("DOMContentLoaded", fetchNews);
 
         async function fetchNews() {
             try {
-                const response = await fetch('http://localhost:5000/api/news');
+                const response = await fetch('/api/news');
                 const result = await response.json();
+
                 if (result.success && result.data.length > 0) {
-                    allNewsData = result.data;
+                    allNewsData = result.data; // Save for modal
                     const newsGrid = document.getElementById('newsGrid');
                     newsGrid.innerHTML = '';
+
+                    // Limit to 3
                     const latestNews = result.data.slice(0, 3);
+
                     latestNews.forEach((item, index) => {
                         let imageHtml = '';
-                        if (item.image) { imageHtml = `<div class="news-img-container"><img src="${item.image}" alt="${item.title}"></div>`; }
+                        if (item.image) {
+                            imageHtml = `<div class="news-img-container"><img src="${item.image}" alt="${item.title}"></div>`;
+                        }
 
-                        const tempDiv = document.createElement("div"); tempDiv.innerHTML = item.content;
+                        // Create a temporary div to strip HTML tags for the preview card
+                        const tempDiv = document.createElement("div");
+                        tempDiv.innerHTML = item.content;
                         const textOnly = tempDiv.textContent || tempDiv.innerText || "";
 
-                        const card = `<div class="news-card">${imageHtml}<div class="news-body"><span class="news-date">${item.date}</span><h3 class="news-title">${item.title}</h3><p class="news-content">${textOnly}</p><button class="read-full-btn" onclick="openArticle(${index})">Read Full</button></div></div>`;
+                        const card = `
+                            <div class="news-card">
+                                ${imageHtml}
+                                <div class="news-body">
+                                    <span class="news-date">${item.date}</span>
+                                    <h3 class="news-title">${item.title}</h3>
+                                    <p class="news-content">${textOnly}</p>
+                                    <button class="read-full-btn" onclick="openArticle(${index})">Read Full</button>
+                                </div>
+                            </div>
+                        `;
                         newsGrid.innerHTML += card;
                     });
+
                     document.getElementById('news-section').style.display = 'block';
                     document.getElementById('news-link').style.display = 'inline-block';
                 }
-            } catch (error) { console.error("Error fetching news:", error); }
+            } catch (error) {
+                console.error("Error fetching news:", error);
+            }
         }
 
+        // --- ARTICLE MODAL LOGIC ---
         function openArticle(index) {
             const data = allNewsData[index];
             if (!data) return;
+
             document.getElementById('modalDate').innerText = data.date;
             document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalContent').innerHTML = data.content; // Render HTML
+
+            // RENDER HTML CONTENT HERE
+            document.getElementById('modalContent').innerHTML = data.content;
+
             const imgEl = document.getElementById('modalImg');
-            if (data.image) { imgEl.src = data.image; imgEl.style.display = 'block'; } else { imgEl.style.display = 'none'; }
+            if (data.image) {
+                imgEl.src = data.image;
+                imgEl.style.display = 'block';
+            } else {
+                imgEl.style.display = 'none';
+            }
+
             document.getElementById('articleModal').classList.add('active');
+        }
+
+        function closeArticleModal() {
+            document.getElementById('articleModal').classList.remove('active');
+        }
+
+        // Close on outside click
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+            }
         }
     </script>
 </body>
-
 
 </html>
