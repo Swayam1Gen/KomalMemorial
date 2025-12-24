@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Stories | Komal Memorial F.A.R.</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & DEFAULTS --- */
+        :root {
+            --font-primary: 'Anton', sans-serif;
+            --font-secondary: 'Outfit', sans-serif;
+            --weight-light: 300;
+            --weight-regular: 400;
+            --weight-medium: 500;
+            --weight-bold: 700;
+            --weight-black: 900;
+            --color-blue: #1995D2;
+            --color-dark-grey: #4D4D4D;
+            --color-light-grey: #E9E8E8;
+            --color-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--color-white);
+            color: var(--color-dark-grey);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-primary {
+            background-color: var(--color-blue);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border: 2px solid var(--color-blue);
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-blue);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--color-white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--color-blue);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-secondary);
+            font-size: 1.5rem;
+            font-weight: var(--weight-black);
+            color: var(--color-blue);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: var(--weight-medium);
+            color: var(--color-dark-grey);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-blue);
+        }
+
+        /* --- HERO MINI --- */
+        .hero-mini {
+            background: var(--color-dark-grey);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-mini h1 {
+            font-family: var(--font-primary);
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero-mini p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* --- NEWS GRID PAGE --- */
+        .news-page-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+            min-height: 60vh;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-img-container {
+            width: 100%;
+            height: 220px;
+            background-color: #eee;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .news-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-img-container img {
+            transform: scale(1.1);
+        }
+
+        .news-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: var(--color-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--color-dark-grey);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-content {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-full-btn {
+            margin-top: auto;
+            align-self: flex-start;
+            background: transparent;
+            color: var(--color-blue);
+            border: 1px solid var(--color-blue);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .read-full-btn:hover {
+            background: var(--color-blue);
+            color: white;
+        }
+
+        /* --- ARTICLE MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            max-width: 800px;
+            width: 95%;
+            padding: 0;
+            overflow: hidden;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-modal-body {
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        .article-modal-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: none;
+        }
+
+        .article-date {
+            color: var(--color-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .article-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .article-text {
+            font-size: 1.1rem;
+            color: #444;
+            white-space: pre-wrap;
+        }
+
+        .article-text a {
+            color: var(--color-blue);
+            text-decoration: underline;
+        }
+
+        .article-text ul,
+        .article-text ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* --- FOOTER & TICKER --- */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 0 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .footer-quote {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--color-blue);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: #ccc;
+            font-weight: var(--weight-medium);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-blue);
+        }
+
+        /* Ticker */
+        .ticker-section-wrap {
+            width: 100%;
+            background-color: var(--color-light-grey);
+            padding: 15px 0;
+            border-top: 4px solid var(--color-blue);
+            border-bottom: 4px solid var(--color-blue);
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .ticker-move {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 40s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 4rem;
+            font-family: var(--font-secondary);
+            font-size: 1.2rem;
+            font-weight: var(--weight-bold);
+            color: var(--color-dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-mini h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html" style="text-decoration:none; color:inherit;">
+                        <i class="fas fa-paw"></i> KOMAL MEMORIAL <span
+                            style="font-size: 0.8em; color: var(--color-dark-grey);">F.A.R.</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#home">Home</a>
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#inspiration">Komal's Story</a>
+                    <a href="index.html#mission">The Mission</a>
+                    <a href="index.html#volunteer">Volunteer</a>
+                    <a href="news.html" style="color: var(--color-blue);">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank"
+                    class="btn btn-primary">Donate Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-mini">
+        <div class="container">
+            <h1>News & Stories</h1>
+            <p>Updates from the field and stories of hope.</p>
+        </div>
+    </section>
+
+    <section class="news-page-section">
+        <div class="container">
+            <div class="news-grid" id="allNewsGrid">
+                <p style="text-align:center; width:100%; color: #666;">Loading stories...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-quote">“HER KINDNESS LIVES ON THROUGH YOU.”</p>
+        </div>
+
+        <div class="ticker-section-wrap">
+            <div class="ticker-move">
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
+                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>KOMAL MEMORIAL - F.A.R.</h3>
+            <p>An initiative by friends and colleagues in loving memory of Komal.</p>
+            <br>
+            <div class="footer-links">
+                <a href="https://1genimpact.cloud/Fundraiser5?id=69492f372d96743a7bb73f90" target="_blank">Donate</a> |
+                <a href="index.html#volunteer">Volunteer</a> |
+                <a href="index.html#about">About Us</a> |
+                <a href="mailto:info@1gen.io">Contact</a>
+            </div>
+            <br>
+            <p>Contact: <a href="mailto:info@1gen.io" style="color: white; text-decoration: none;">info@1gen.io</a></p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal-container">
+            <span class="modal-close-btn" onclick="closeArticleModal()">&times;</span>
+            <img id="modalImg" class="article-modal-img" src="" alt="">
+            <div class="article-modal-body">
+                <span id="modalDate" class="article-date"></span>
+                <h2 id="modalTitle" class="article-title"></h2>
+                <div id="modalContent" class="article-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allNewsData = [];
+
+        document.addEventListener("DOMContentLoaded", fetchAllNews);
+
+        async function fetchAllNews() {
+            try {
+                const response = await fetch('http://localhost:5000/api/news');
+                const result = await response.json();
+                const grid = document.getElementById('allNewsGrid');
+
+                if (result.success && result.data.length > 0) {
+                    allNewsData = result.data;
+                    grid.innerHTML = '';
+
+                    // SHOW ALL ITEMS
+                    result.data.forEach((item, index) => {
+
+                        // Check for Image
+                        let imageHtml = '';
+                        if (item.image) {
+                            imageHtml = `<div class="news-img-container"><img src="${item.image}" alt="${item.title}"></div>`;
+                        }
+
+                        // Create a temporary div to strip HTML tags for the preview card
+                        const tempDiv = document.createElement("div");
+                        tempDiv.innerHTML = item.content;
+                        const textOnly = tempDiv.textContent || tempDiv.innerText || "";
+
+                        const card = `
+                            <div class="news-card">
+                                ${imageHtml}
+                                <div class="news-body">
+                                    <span class="news-date">${item.date}</span>
+                                    <h3 class="news-title">${item.title}</h3>
+                                    <p class="news-content">${textOnly}</p>
+                                    <button class="read-full-btn" onclick="openArticle(${index})">Read Full</button>
+                                </div>
+                            </div>
+                        `;
+                        grid.innerHTML += card;
+                    });
+                } else {
+                    grid.innerHTML = '<p style="text-align:center; width:100%; padding: 40px; font-size: 1.2rem; color: #666;">No news/blog published</p>';
+                }
+            } catch (error) {
+                console.error("Error fetching news:", error);
+                document.getElementById('allNewsGrid').innerHTML = '<p style="text-align:center; color:red;">Error loading news.</p>';
+            }
+        }
+
+        // --- ARTICLE MODAL LOGIC ---
+        function openArticle(index) {
+            const data = allNewsData[index];
+            if (!data) return;
+
+            document.getElementById('modalDate').innerText = data.date;
+            document.getElementById('modalTitle').innerText = data.title;
+
+            // RENDER HTML CONTENT HERE
+            document.getElementById('modalContent').innerHTML = data.content;
+
+            const imgEl = document.getElementById('modalImg');
+            if (data.image) {
+                imgEl.src = data.image;
+                imgEl.style.display = 'block';
+            } else {
+                imgEl.style.display = 'none';
+            }
+
+            document.getElementById('articleModal').classList.add('active');
+        }
+
+        function closeArticleModal() {
+            document.getElementById('articleModal').classList.remove('active');
+        }
+
+        // Close on outside click
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,10 @@
     <title>Admin Dashboard | Komal Memorial</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <style>
+        /* --- CORE VARIABLES --- */
         :root {
             --color-blue: #1995D2;
             --color-blue-dark: #1377a8;
@@ -30,7 +33,7 @@
             line-height: 1.6;
         }
 
-        /* --- LOGIN SCREEN --- */
+        /* --- LOGIN STYLES --- */
         #login-section {
             height: 100vh;
             display: flex;
@@ -61,23 +64,6 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-header {
-            margin-bottom: 30px;
         }
 
         .login-header i {
@@ -93,12 +79,6 @@
             color: var(--color-text);
         }
 
-        .login-header p {
-            margin: 5px 0 0;
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-        }
-
         .input-group {
             position: relative;
             margin-bottom: 20px;
@@ -110,46 +90,15 @@
             margin-bottom: 8px;
             font-weight: 500;
             font-size: 0.9rem;
-            color: var(--color-text);
         }
 
         .input-wrapper {
             position: relative;
         }
 
-        /* Left Icon (User/Lock) */
-        .input-wrapper .input-icon-left {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            transition: var(--transition);
-            pointer-events: none;
-            /* Let clicks pass through */
-        }
-
-        /* Right Icon (Eye Toggle) */
-        .input-wrapper .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            cursor: pointer;
-            z-index: 10;
-            padding: 5px;
-            /* Increases clickable area */
-        }
-
-        .input-wrapper .toggle-password:hover {
-            color: var(--color-blue);
-        }
-
-        .login-card input {
+        .input-wrapper input {
             width: 100%;
-            padding: 14px 45px 14px 45px;
-            /* Padding on both sides for icons */
+            padding: 14px 45px;
             border: 2px solid #eee;
             border-radius: 8px;
             font-family: inherit;
@@ -159,13 +108,28 @@
             box-sizing: border-box;
         }
 
-        .login-card input:focus {
+        .input-wrapper input:focus {
             border-color: var(--color-blue);
             background: #fdfdfd;
         }
 
-        .login-card input:focus+.input-icon-left {
-            color: var(--color-blue);
+        .input-wrapper .input-icon-left {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            pointer-events: none;
+        }
+
+        .input-wrapper .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+            padding: 5px;
         }
 
         .btn-primary {
@@ -185,7 +149,6 @@
         .btn-primary:hover {
             background: var(--color-blue-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(25, 149, 210, 0.4);
         }
 
         .error-msg {
@@ -197,7 +160,6 @@
             display: none;
             margin-top: 20px;
             font-size: 0.9em;
-            display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
@@ -229,11 +191,6 @@
             font-weight: 700;
         }
 
-        .header small {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-        }
-
         .btn-logout {
             background: #f0f0f0;
             color: var(--color-text);
@@ -253,6 +210,52 @@
             color: var(--color-red);
         }
 
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--color-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(25, 149, 210, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* TABLES & STATS */
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -268,12 +271,6 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
         }
 
         .stat-icon {
@@ -291,37 +288,22 @@
         .stat-info h3 {
             margin: 0;
             font-size: 2rem;
-            color: var(--color-text);
         }
 
-        .stat-info p {
-            margin: 0;
-            color: var(--color-text-light);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        /* --- UPDATED CONTROLS (FIX OVERLAP) --- */
         .controls {
             display: flex;
             flex-wrap: wrap;
-            /* Allows wrapping on smaller screens */
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
             gap: 20px;
-            /* Increased gap to prevent touching */
         }
 
         .search-box {
             position: relative;
             flex: 1;
-            /* Takes available space */
             min-width: 250px;
-            /* Don't get smaller than this */
             max-width: 500px;
-            /* Don't get wider than this */
         }
 
         .search-box input {
@@ -329,9 +311,7 @@
             padding: 12px 12px 12px 45px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-family: inherit;
             outline: none;
-            box-shadow: var(--shadow-sm);
         }
 
         .search-box i {
@@ -353,15 +333,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
-            white-space: nowrap;
-            /* Prevents text breaking */
-        }
-
-        .btn-export:hover {
-            background: #059669;
-            transform: translateY(-2px);
         }
 
         .table-container {
@@ -393,10 +364,6 @@
             vertical-align: middle;
         }
 
-        tr:hover td {
-            background: #f9fbfd;
-        }
-
         .btn-delete {
             background: white;
             color: var(--color-red);
@@ -406,7 +373,6 @@
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
-            transition: var(--transition);
         }
 
         .btn-delete:hover {
@@ -428,27 +394,74 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .btn-page:hover:not(:disabled) {
-            border-color: var(--color-blue);
+        /* --- NEWS MANAGEMENT STYLES --- */
+        .news-form {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+        }
+
+        .news-form h3 {
+            margin-top: 0;
             color: var(--color-blue);
         }
 
-        .btn-page:disabled {
-            background: #f5f5f5;
-            color: #bbb;
-            cursor: not-allowed;
+        .form-row {
+            margin-bottom: 15px;
         }
 
-        #pageInfo {
+        .form-row label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
-            color: var(--color-text-light);
-            margin-right: 10px;
         }
 
-        /* Mobile Adjustments */
+        .form-row input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        /* EDITOR CONTAINER - FIXES FOR FORMATTING */
+        #editor-wrapper {
+            margin-bottom: 20px;
+        }
+
+        #editor-container {
+            height: 250px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .ql-toolbar {
+            border-radius: 8px 8px 0 0;
+            background: #f8f9fa;
+        }
+
+        .ql-container {
+            border-radius: 0 0 8px 8px;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 1rem !important;
+        }
+
+        /* FIX: FORCE HEADINGS TO BE BLACK INSIDE EDITOR */
+        .ql-editor h1,
+        .ql-editor h2,
+        .ql-editor h3 {
+            color: #333 !important;
+        }
+
+        .ql-editor a {
+            color: var(--color-blue);
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -461,7 +474,6 @@
                 justify-content: center;
             }
 
-            /* Force stacked layout for controls on mobile */
             .controls {
                 flex-direction: column;
                 align-items: stretch;
@@ -469,11 +481,6 @@
 
             .search-box {
                 max-width: 100%;
-            }
-
-            .btn-export {
-                width: 100%;
-                justify-content: center;
             }
         }
     </style>
@@ -488,7 +495,6 @@
                 <h2>Admin Portal</h2>
                 <p>Komal Memorial F.A.R.</p>
             </div>
-
             <form id="loginForm">
                 <div class="input-group">
                     <label>Username</label>
@@ -497,7 +503,6 @@
                         <i class="fas fa-user input-icon-left"></i>
                     </div>
                 </div>
-
                 <div class="input-group">
                     <label>Password</label>
                     <div class="input-wrapper">
@@ -507,11 +512,7 @@
                             onclick="togglePasswordVisibility()"></i>
                     </div>
                 </div>
-
-                <button type="submit" class="btn-primary">
-                    Sign In <i class="fas fa-arrow-right" style="margin-left:8px;"></i>
-                </button>
-
+                <button type="submit" class="btn-primary">Sign In</button>
                 <div class="error-msg" id="loginError" style="display: none;">
                     <i class="fas fa-exclamation-circle"></i> <span>Invalid Credentials</span>
                 </div>
@@ -530,89 +531,161 @@
             </button>
         </div>
 
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number" id="statTotal">-</div>
-                    <p>Total Volunteers</p>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('volunteers')">Volunteer Management</button>
+            <button class="tab-btn" onclick="switchTab('news')">Manage Blog/News</button>
+        </div>
+
+        <div id="view-volunteers" class="tab-content active">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="statTotal">-</div>
+                        <p>Total Volunteers</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="statToday">-</div>
+                        <p>New Today</p>
+                    </div>
                 </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number" id="statToday">-</div>
-                    <p>New Today</p>
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search..." onkeyup="handleSearch()">
                 </div>
+                <button onclick="exportCSV()" class="btn-export"><i class="fas fa-file-csv"></i> Export Data</button>
+            </div>
+            <div class="table-container">
+                <table id="volunteerTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span id="pageInfo">Page 1</span>
+                <button class="btn-page" id="btnPrev" onclick="changePage(-1)">Prev</button>
+                <button class="btn-page" id="btnNext" onclick="changePage(1)">Next</button>
             </div>
         </div>
 
-        <div class="controls">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search by name, email, or phone..."
-                    onkeyup="handleSearch()">
+        <div id="view-news" class="tab-content">
+            <div class="news-form">
+                <h3>Post New Story</h3>
+                <form id="addNewsForm">
+                    <div class="form-row">
+                        <label>Title</label>
+                        <input type="text" id="newsTitle" placeholder="Story Headline" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Featured Image (Max 2MB)</label>
+                        <input type="file" id="newsImage" accept="image/*">
+                    </div>
+
+                    <div id="editor-wrapper">
+                        <label>Content</label>
+                        <div id="editor-container"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary" style="width: auto; padding: 10px 30px;">
+                            <i class="fas fa-paper-plane"></i> Publish Story
+                        </button>
+                    </div>
+                </form>
             </div>
-            <button onclick="exportCSV()" class="btn-export">
-                <i class="fas fa-file-csv"></i> Export Data
-            </button>
-        </div>
 
-        <div class="table-container">
-            <table id="volunteerTable">
-                <thead>
-                    <tr>
-                        <th>Date Registered</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Message</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span id="pageInfo">Page 1</span>
-            <button class="btn-page" id="btnPrev" onclick="changePage(-1)"><i class="fas fa-chevron-left"></i>
-                Prev</button>
-            <button class="btn-page" id="btnNext" onclick="changePage(1)">Next <i
-                    class="fas fa-chevron-right"></i></button>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Preview</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="newsTableBody"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
     <script>
-        const API_BASE = "/api";
+        const API_BASE = "http://localhost:5000/api";
         let currentPage = 1;
         let searchTimeout = null;
+        let quill;
 
-        // --- PASSWORD TOGGLE LOGIC ---
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.getElementById('togglePasswordIcon');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
+        // --- INIT QUILL WITH CUSTOM LINK HANDLER ---
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('editor-container')) {
+                quill = new Quill('#editor-container', {
+                    theme: 'snow',
+                    placeholder: 'Write the full story here...',
+                    modules: {
+                        toolbar: {
+                            container: [
+                                ['bold', 'italic', 'underline', 'strike'],
+                                ['blockquote', 'code-block'],
+                                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                [{ 'header': [1, 2, 3, false] }],
+                                [{ 'color': [] }, { 'background': [] }],
+                                ['link'],
+                                ['clean']
+                            ],
+                            handlers: {
+                                // Custom Link Handler to enforce HTTPS
+                                'link': function (value) {
+                                    if (value) {
+                                        var href = prompt('Enter the URL');
+                                        if (href) {
+                                            // Auto-prepend https:// if missing
+                                            if (!href.startsWith('http://') && !href.startsWith('https://')) {
+                                                href = 'https://' + href;
+                                            }
+                                            this.quill.format('link', href);
+                                        }
+                                    } else {
+                                        this.quill.format('link', false);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             }
+        });
+
+        // --- LOGIN & AUTH ---
+        function togglePasswordVisibility() {
+            const pwd = document.getElementById('password');
+            const icon = document.getElementById('togglePasswordIcon');
+            if (pwd.type === 'password') { pwd.type = 'text'; icon.className = 'fas fa-eye-slash toggle-password'; }
+            else { pwd.type = 'password'; icon.className = 'fas fa-eye toggle-password'; }
         }
 
-        // --- AUTH CHECK ON LOAD ---
         window.onload = function () {
             const token = localStorage.getItem('admin_token');
-            if (token) {
-                showDashboard();
-            }
+            if (token) { showDashboard(); }
         };
 
-        // --- LOGIN LOGIC ---
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             const user = document.getElementById('userid').value;
@@ -631,19 +704,14 @@
                     body: JSON.stringify({ username: user, password: pass })
                 });
                 const data = await res.json();
-
                 if (data.success) {
                     localStorage.setItem('admin_token', data.token);
                     showDashboard();
                 } else {
                     showError(data.message);
                 }
-            } catch (e) {
-                showError("Server Connection Failed");
-            } finally {
-                btn.innerHTML = 'Sign In <i class="fas fa-arrow-right" style="margin-left:8px;"></i>';
-                btn.disabled = false;
-            }
+            } catch (e) { showError("Server Connection Failed"); }
+            finally { btn.innerHTML = 'Sign In'; btn.disabled = false; }
         });
 
         function showDashboard() {
@@ -651,6 +719,7 @@
             document.getElementById('dashboard-section').style.display = 'block';
             fetchStats();
             fetchData();
+            fetchNews();
         }
 
         function showError(msg) {
@@ -659,16 +728,116 @@
             el.style.display = 'flex';
         }
 
-        function logout() {
-            localStorage.removeItem('admin_token');
-            location.reload();
+        function logout() { localStorage.removeItem('admin_token'); location.reload(); }
+        function getAuthHeader() { return { 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') }; }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            if (tabName === 'volunteers') {
+                document.getElementById('view-volunteers').classList.add('active');
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            } else {
+                document.getElementById('view-news').classList.add('active');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            }
         }
 
-        function getAuthHeader() {
-            return { 'Authorization': 'Bearer ' + localStorage.getItem('admin_token') };
+        // --- NEWS FUNCTIONS ---
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+        document.getElementById('addNewsForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const title = document.getElementById('newsTitle').value;
+            const content = quill.root.innerHTML; // Get HTML from Quill
+
+            if (quill.getText().trim().length === 0) {
+                alert("Please add content.");
+                return;
+            }
+
+            const fileInput = document.getElementById('newsImage');
+            const btn = this.querySelector('button');
+
+            let imageBase64 = "";
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > 2 * 1024 * 1024) { alert("Image too large (Max 2MB)"); return; }
+                imageBase64 = await toBase64(file);
+            }
+
+            btn.disabled = true; btn.innerText = "Publishing...";
+
+            try {
+                const res = await fetch(`${API_BASE}/news`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+                    body: JSON.stringify({ title, content, image: imageBase64 })
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    alert("Published!");
+                    this.reset();
+                    quill.setContents([]);
+                    fetchNews();
+                } else { alert("Error: " + json.message); }
+            } catch (e) { alert("Failed to publish"); console.error(e); }
+            finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Story'; }
+        });
+
+        async function fetchNews() {
+            const tbody = document.getElementById('newsTableBody');
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading...</td></tr>';
+
+            try {
+                const res = await fetch(`${API_BASE}/news`);
+                const json = await res.json();
+                tbody.innerHTML = '';
+
+                // --- FIX: Handle Empty State Explicitly ---
+                if (!json.data || json.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No news/blog published</td></tr>';
+                    return;
+                }
+
+                json.data.forEach(item => {
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = item.content;
+                    const text = tempDiv.textContent || tempDiv.innerText || "";
+                    const preview = text.length > 50 ? text.substring(0, 50) + "..." : text;
+                    const imgTag = item.image ? `<img src="${item.image}" style="height: 50px; width: 80px; object-fit: cover; border-radius: 4px;">` : 'No Image';
+
+                    const row = `<tr>
+                        <td><span style="color:#666; font-size:0.9em;">${item.date}</span></td>
+                        <td>${imgTag}</td>
+                        <td><strong>${item.title}</strong></td>
+                        <td>${preview}</td>
+                        <td><button onclick="deleteNews('${item.id}')" class="btn-delete"><i class="fas fa-trash"></i> Delete</button></td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (e) {
+                console.error(e);
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:red;">Error loading news.</td></tr>';
+            }
         }
 
-        // --- DASHBOARD FUNCTIONS ---
+        async function deleteNews(id) {
+            if (!confirm("Delete this story?")) return;
+            try {
+                const res = await fetch(`${API_BASE}/news/${id}`, { method: 'DELETE', headers: getAuthHeader() });
+                const json = await res.json();
+                if (json.success) { fetchNews(); } else { alert("Error: " + json.message); }
+            } catch (e) { alert("Delete failed"); }
+        }
+
+        // --- Volunteer Functions (Existing) ---
         async function fetchStats() {
             try {
                 const res = await fetch(`${API_BASE}/admin/stats`, { headers: getAuthHeader() });
@@ -677,98 +846,34 @@
                     document.getElementById('statTotal').innerText = json.data.total;
                     document.getElementById('statToday').innerText = json.data.today;
                 }
-            } catch (e) { console.error(e); }
+            } catch (e) { }
         }
-
         async function fetchData() {
             const query = document.getElementById('searchInput').value;
             const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px; color:#666;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
-
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
             try {
-                const res = await fetch(`${API_BASE}/volunteers?page=${currentPage}&limit=10&search=${query}`, {
-                    headers: getAuthHeader()
-                });
-
+                const res = await fetch(`${API_BASE}/volunteers?page=${currentPage}&limit=10&search=${query}`, { headers: getAuthHeader() });
                 if (res.status === 401) return logout();
-
                 const json = await res.json();
                 tbody.innerHTML = '';
-
-                if (json.data.volunteers.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 30px; color:#666;">No records found.</td></tr>';
-                    return;
-                }
-
+                if (json.data.volunteers.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No records found.</td></tr>'; return; }
                 json.data.volunteers.forEach(v => {
-                    const row = `
-                        <tr>
-                            <td><span style="color:#666; font-size:0.9em;">${v.date}</span></td>
-                            <td><strong>${v.name}</strong></td>
-                            <td>${v.email}</td>
-                            <td>${v.phone}</td>
-                            <td style="max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${v.message}">${v.message}</td>
-                            <td><button onclick="deleteVolunteer('${v.id}')" class="btn-delete"><i class="fas fa-trash"></i> Delete</button></td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
+                    tbody.innerHTML += `<tr><td>${v.date}</td><td><strong>${v.name}</strong></td><td>${v.email}</td><td>${v.phone}</td><td title="${v.message}">${v.message.substring(0, 30)}...</td><td><button onclick="deleteVolunteer('${v.id}')" class="btn-delete">Delete</button></td></tr>`;
                 });
-
-                const total = json.data.pagination.total_records;
-                const totalPages = Math.ceil(total / 10) || 1;
-                document.getElementById('pageInfo').innerText = `Page ${currentPage} of ${totalPages}`;
-                document.getElementById('btnPrev').disabled = currentPage <= 1;
-                document.getElementById('btnNext').disabled = currentPage >= totalPages;
-
-            } catch (e) { console.error(e); }
+                document.getElementById('pageInfo').innerText = `Page ${currentPage}`;
+            } catch (e) { }
         }
-
-        function handleSearch() {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                currentPage = 1;
-                fetchData();
-            }, 500);
-        }
-
-        function changePage(dir) {
-            currentPage += dir;
-            fetchData();
-        }
-
-        async function deleteVolunteer(id) {
-            if (!confirm("Are you sure you want to delete this record? This cannot be undone.")) return;
-            try {
-                const res = await fetch(`${API_BASE}/volunteers/${id}`, {
-                    method: 'DELETE',
-                    headers: getAuthHeader()
-                });
-                const json = await res.json();
-                if (json.success) {
-                    fetchData();
-                    fetchStats();
-                } else {
-                    alert(json.message);
-                }
-            } catch (e) { alert("Delete failed"); }
-        }
-
+        function handleSearch() { clearTimeout(searchTimeout); searchTimeout = setTimeout(() => { currentPage = 1; fetchData(); }, 500); }
+        function changePage(dir) { currentPage += dir; fetchData(); }
+        async function deleteVolunteer(id) { if (confirm("Delete?")) { await fetch(`${API_BASE}/volunteers/${id}`, { method: 'DELETE', headers: getAuthHeader() }); fetchData(); fetchStats(); } }
         async function exportCSV() {
-            try {
-                const res = await fetch(`${API_BASE}/volunteers/export`, { headers: getAuthHeader() });
-                if (res.status !== 200) throw new Error("Export failed");
-                const blob = await res.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = "volunteers_export.csv";
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            } catch (e) { alert("Failed to export data"); }
+            const res = await fetch(`${API_BASE}/volunteers/export`, { headers: getAuthHeader() });
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = "volunteers.csv"; document.body.appendChild(a); a.click(); a.remove();
         }
     </script>
 </body>
-
 
 </html>

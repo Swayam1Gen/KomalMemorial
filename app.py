@@ -13,25 +13,35 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from pymongo.errors import DuplicateKeyError
 from bson import ObjectId
+from dotenv import load_dotenv
 
 # --- CONFIGURATION ---
-# In production, these should be environment variables!
-SECRET_KEY = "super_secret_jwt_key_change_this"
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "1gen2025"  # Ideally, hash this password in a real DB
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "default_fallback_key")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+MONGO_URI = os.getenv("MONGO_URI")
+
+if not MONGO_URI:
+    raise ValueError("No MONGO_URI found in environment variables.")
+if not ADMIN_PASSWORD:
+    raise ValueError("No ADMIN_PASSWORD found in environment variables.")
 
 # --- LOGGING ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__, static_folder='.', static_url_path='')
+# Increase max content length for image uploads (e.g., 5MB)
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024 
 CORS(app)
 
 # --- RATE LIMITER ---
 limiter = Limiter(get_remote_address, app=app, default_limits=["500 per day", "100 per hour"])
 
 # --- DATABASE ---
-app.config["MONGO_URI"] = "mongodb+srv://swayam_db_user:VWPgvIZjjNUKQ0mo@komalmemorial.uem6jht.mongodb.net/komal_memorial?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
 # Ensure Indexes
@@ -39,7 +49,8 @@ with app.app_context():
     try:
         mongo.db.volunteers.create_index("email", unique=True)
         mongo.db.volunteers.create_index("phone", unique=True)
-        mongo.db.volunteers.create_index("registered_at") # For sorting/filtering
+        mongo.db.volunteers.create_index("registered_at")
+        mongo.db.news.create_index("date")
     except Exception as e:
         logger.error(f"Index creation error: {e}")
 
@@ -48,7 +59,6 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-        # Check Authorization header (Format: "Bearer <token>")
         if 'Authorization' in request.headers:
             auth_header = request.headers['Authorization']
             if auth_header.startswith("Bearer "):
@@ -79,7 +89,7 @@ def log_audit(action, details=""):
     except Exception as e:
         logger.error(f"Audit log failed: {e}")
 
-# --- ROUTES ---
+# --- EXISTING ROUTES ---
 
 @app.route('/api/admin/login', methods=['POST'])
 @limiter.limit("5 per minute") 
@@ -89,7 +99,6 @@ def admin_login():
         return jsonify({"success": False, "message": "Missing credentials"}), 400
 
     if data['username'] == ADMIN_USERNAME and data['password'] == ADMIN_PASSWORD:
-        # Generate JWT Token (valid for 2 hours)
         token = jwt.encode({
             'user': ADMIN_USERNAME,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
@@ -104,7 +113,6 @@ def admin_login():
 @token_required
 def get_stats():
     try:
-        # Get start of today (UTC)
         now = datetime.datetime.utcnow()
         start_of_day = datetime.datetime(now.year, now.month, now.day)
         
@@ -120,15 +128,9 @@ def get_stats():
 def export_volunteers():
     try:
         log_audit("EXPORT_CSV", "Exported volunteer list")
-        
-        # Create CSV in memory
         output = io.StringIO()
         writer = csv.writer(output)
-        
-        # Header
         writer.writerow(['Registered At', 'Name', 'Email', 'Phone', 'Message'])
-        
-        # Data
         volunteers = mongo.db.volunteers.find().sort("registered_at", -1)
         for v in volunteers:
             writer.writerow([
@@ -138,7 +140,6 @@ def export_volunteers():
                 v['phone'],
                 v.get('message', '')
             ])
-            
         return Response(
             output.getvalue(),
             mimetype="text/csv",
@@ -161,7 +162,7 @@ def delete_volunteer(id):
         return jsonify({"success": False, "message": str(e)}), 500
 
 @app.route('/api/volunteers', methods=['GET'])
-@token_required  # PROTECTED ROUTE
+@token_required
 def get_volunteers():
     try:
         page = int(request.args.get('page', 1))
@@ -169,10 +170,8 @@ def get_volunteers():
         search = request.args.get('search', '')
         skip = (page - 1) * limit
 
-        # Build Query
         query = {}
         if search:
-            # Case-insensitive search on name, email, or phone
             query["$or"] = [
                 {"name": {"$regex": search, "$options": "i"}},
                 {"email": {"$regex": search, "$options": "i"}},
@@ -185,7 +184,7 @@ def get_volunteers():
         volunteers_list = []
         for v in cursor:
             volunteers_list.append({
-                "id": str(v['_id']), # Send ID for deletion
+                "id": str(v['_id']),
                 "name": v['name'],
                 "email": v['email'],
                 "phone": v['phone'],
@@ -209,12 +208,9 @@ def get_volunteers():
         logger.error(f"Error: {e}")
         return jsonify({"success": False, "message": "Server Error"}), 500
 
-# Public Registration Route (Unprotected)
 @app.route('/api/register-volunteer', methods=['POST'])
 @limiter.limit("5 per minute")
 def register_volunteer():
-    # ... (Keep your existing registration code here - no changes needed) ...
-    # Copy the registration logic from the previous robust version
     try:
         data = request.json
         if not data or not all(k in data for k in ('name', 'email', 'phone')):
@@ -230,6 +226,67 @@ def register_volunteer():
         return jsonify({"success": True, "message": "Registered!"}), 201
     except DuplicateKeyError:
         return jsonify({"success": False, "message": "Email/Phone already exists"}), 409
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+# --- UPDATED NEWS ROUTES ---
+
+@app.route('/api/news', methods=['GET'])
+def get_news():
+    """ Public endpoint to get news updates """
+    try:
+        # Sort by date descending
+        cursor = mongo.db.news.find().sort("date", -1)
+        news_list = []
+        for n in cursor:
+            news_list.append({
+                "id": str(n['_id']),
+                "title": n['title'],
+                "content": n['content'],
+                "image": n.get('image', None), # Retrieve image
+                "date": n['date'].strftime("%B %d, %Y") # Friendly date format
+            })
+        return jsonify({"success": True, "data": news_list}), 200
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+@app.route('/api/news', methods=['POST'])
+@token_required
+def add_news():
+    """ Admin only: Add a news item with optional image """
+    try:
+        data = request.json
+        if not data or not data.get('title') or not data.get('content'):
+            return jsonify({"success": False, "message": "Missing title or content"}), 400
+
+        # Create document
+        news_item = {
+            "title": data['title'],
+            "content": data['content'],
+            "date": datetime.datetime.utcnow()
+        }
+        
+        # Add image if present (Base64 string)
+        if data.get('image'):
+            news_item['image'] = data['image']
+
+        mongo.db.news.insert_one(news_item)
+        
+        log_audit("ADD_NEWS", f"Added news: {data['title']}")
+        return jsonify({"success": True, "message": "News added successfully"}), 201
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+@app.route('/api/news/<id>', methods=['DELETE'])
+@token_required
+def delete_news(id):
+    try:
+        result = mongo.db.news.delete_one({"_id": ObjectId(id)})
+        if result.deleted_count == 1:
+            log_audit("DELETE_NEWS", f"Deleted news ID: {id}")
+            return jsonify({"success": True, "message": "News deleted"}), 200
+        else:
+            return jsonify({"success": False, "message": "News item not found"}), 404
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
