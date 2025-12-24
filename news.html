@@ -5,21 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News & Stories | Komal Memorial F.A.R.</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & DEFAULTS --- */
+        /* CSS Variables */
         :root {
             --font-primary: 'Anton', sans-serif;
             --font-secondary: 'Outfit', sans-serif;
-            --weight-light: 300;
-            --weight-regular: 400;
-            --weight-medium: 500;
-            --weight-bold: 700;
-            --weight-black: 900;
             --color-blue: #1995D2;
             --color-dark-grey: #4D4D4D;
             --color-light-grey: #E9E8E8;
@@ -45,10 +39,6 @@
             transition: 0.3s;
         }
 
-        ul {
-            list-style: none;
-        }
-
         .container {
             width: 90%;
             max-width: 1200px;
@@ -56,7 +46,6 @@
             padding: 0 20px;
         }
 
-        /* --- BUTTONS --- */
         .btn-primary {
             background-color: var(--color-blue);
             color: white;
@@ -74,7 +63,7 @@
             color: var(--color-blue);
         }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
             background-color: var(--color-white);
             padding: 20px 0;
@@ -94,7 +83,7 @@
         .logo {
             font-family: var(--font-secondary);
             font-size: 1.5rem;
-            font-weight: var(--weight-black);
+            font-weight: 900;
             color: var(--color-blue);
             text-transform: uppercase;
         }
@@ -105,7 +94,7 @@
         }
 
         .nav-links a {
-            font-weight: var(--weight-medium);
+            font-weight: 500;
             color: var(--color-dark-grey);
             font-size: 0.95rem;
         }
@@ -114,7 +103,7 @@
             color: var(--color-blue);
         }
 
-        /* --- HERO MINI --- */
+        /* HERO MINI */
         .hero-mini {
             background: var(--color-dark-grey);
             color: white;
@@ -129,12 +118,7 @@
             margin-bottom: 10px;
         }
 
-        .hero-mini p {
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-
-        /* --- NEWS GRID PAGE --- */
+        /* NEWS GRID */
         .news-page-section {
             padding: 80px 0;
             background: #f8f9fa;
@@ -153,10 +137,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
+            transition: transform 0.3s;
         }
 
         .news-card:hover {
@@ -166,7 +150,7 @@
         .news-img-container {
             width: 100%;
             height: 220px;
-            background-color: #eee;
+            background: #eee;
             overflow: hidden;
             flex-shrink: 0;
         }
@@ -175,7 +159,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s;
         }
 
         .news-card:hover .news-img-container img {
@@ -195,7 +179,6 @@
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 10px;
-            letter-spacing: 1px;
         }
 
         .news-title {
@@ -203,7 +186,6 @@
             margin-bottom: 15px;
             font-weight: 700;
             line-height: 1.3;
-            color: var(--color-dark-grey);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -228,11 +210,10 @@
             border: 1px solid var(--color-blue);
             padding: 8px 15px;
             border-radius: 4px;
-            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
             text-transform: uppercase;
+            transition: 0.3s;
         }
 
         .read-full-btn:hover {
@@ -240,7 +221,7 @@
             color: white;
         }
 
-        /* --- ARTICLE MODAL --- */
+        /* MODAL */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -313,15 +294,19 @@
             line-height: 1.2;
         }
 
+        /* Render HTML Content Correctly in Modal */
         .article-text {
             font-size: 1.1rem;
             color: #444;
-            white-space: pre-wrap;
+            overflow-wrap: break-word;
         }
 
-        .article-text a {
-            color: var(--color-blue);
-            text-decoration: underline;
+        .article-text h1,
+        .article-text h2,
+        .article-text h3 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: #333;
         }
 
         .article-text ul,
@@ -330,13 +315,17 @@
             margin-bottom: 15px;
         }
 
-        /* --- FOOTER & TICKER --- */
+        .article-text a {
+            color: var(--color-blue);
+            text-decoration: underline;
+        }
+
+        /* FOOTER & TICKER */
         footer {
-            background-color: #333;
+            background: #333;
             color: white;
             padding: 60px 0 0 0;
             text-align: center;
-            overflow: hidden;
         }
 
         .footer-quote {
@@ -351,17 +340,12 @@
         .footer-links a {
             margin: 0 15px;
             color: #ccc;
-            font-weight: var(--weight-medium);
+            font-weight: 500;
         }
 
-        .footer-links a:hover {
-            color: var(--color-blue);
-        }
-
-        /* Ticker */
         .ticker-section-wrap {
             width: 100%;
-            background-color: var(--color-light-grey);
+            background: var(--color-light-grey);
             padding: 15px 0;
             border-top: 4px solid var(--color-blue);
             border-bottom: 4px solid var(--color-blue);
@@ -379,7 +363,7 @@
             padding: 0 4rem;
             font-family: var(--font-secondary);
             font-size: 1.2rem;
-            font-weight: var(--weight-bold);
+            font-weight: 700;
             color: var(--color-dark-grey);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -400,10 +384,6 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-            }
-
-            .hero-mini h1 {
-                font-size: 2.5rem;
             }
         }
     </style>
@@ -445,7 +425,7 @@
     <section class="news-page-section">
         <div class="container">
             <div class="news-grid" id="allNewsGrid">
-                <p style="text-align:center; width:100%; color: #666;">Loading stories...</p>
+                <p style="text-align:center; width:100%; color:#666;">Loading stories...</p>
             </div>
         </div>
     </section>
@@ -458,19 +438,15 @@
         <div class="ticker-section-wrap">
             <div class="ticker-move">
                 <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                        style="height: 35px; margin-left: 15px;"></span>
                 <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                        style="height: 35px; margin-left: 15px;"></span>
                 <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                        style="height: 35px; margin-left: 15px;"></span>
                 <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                        style="height: 35px; margin-left: 15px;"></span>
                 <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
-                <span class="ticker-item">POWERED BY <img src="image_2.png" alt="1Gen"
-                        style="height: 35px; vertical-align: middle; margin-left: 15px;"></span>
+                        style="height: 35px; margin-left: 15px;"></span>
             </div>
         </div>
 
@@ -508,24 +484,22 @@
 
         async function fetchAllNews() {
             try {
-                const response = await fetch('/api/news');
+                const response = await fetch('http://localhost:5000/api/news');
                 const result = await response.json();
                 const grid = document.getElementById('allNewsGrid');
 
+                // --- FIX: CHECK IF EMPTY ---
                 if (result.success && result.data.length > 0) {
                     allNewsData = result.data;
                     grid.innerHTML = '';
 
-                    // SHOW ALL ITEMS
                     result.data.forEach((item, index) => {
-
-                        // Check for Image
                         let imageHtml = '';
                         if (item.image) {
                             imageHtml = `<div class="news-img-container"><img src="${item.image}" alt="${item.title}"></div>`;
                         }
 
-                        // Create a temporary div to strip HTML tags for the preview card
+                        // Strip HTML for preview
                         const tempDiv = document.createElement("div");
                         tempDiv.innerHTML = item.content;
                         const textOnly = tempDiv.textContent || tempDiv.innerText || "";
@@ -544,33 +518,26 @@
                         grid.innerHTML += card;
                     });
                 } else {
-                    grid.innerHTML = '<p style="text-align:center; width:100%; padding: 40px; font-size: 1.2rem; color: #666;">No news/blog published</p>';
+                    grid.innerHTML = '<p style="text-align:center; width:100%; font-size:1.2rem; color:#666; padding: 40px;">No news/blog published</p>';
                 }
             } catch (error) {
-                console.error("Error fetching news:", error);
-                document.getElementById('allNewsGrid').innerHTML = '<p style="text-align:center; color:red;">Error loading news.</p>';
+                console.error("Error:", error);
+                document.getElementById('allNewsGrid').innerHTML = '<p style="text-align:center; color:red;">Failed to load stories.</p>';
             }
         }
 
-        // --- ARTICLE MODAL LOGIC ---
         function openArticle(index) {
             const data = allNewsData[index];
             if (!data) return;
 
             document.getElementById('modalDate').innerText = data.date;
             document.getElementById('modalTitle').innerText = data.title;
-
-            // RENDER HTML CONTENT HERE
+            // RENDER HTML HERE
             document.getElementById('modalContent').innerHTML = data.content;
 
             const imgEl = document.getElementById('modalImg');
-            if (data.image) {
-                imgEl.src = data.image;
-                imgEl.style.display = 'block';
-            } else {
-                imgEl.style.display = 'none';
-            }
-
+            if (data.image) { imgEl.src = data.image; imgEl.style.display = 'block'; }
+            else { imgEl.style.display = 'none'; }
             document.getElementById('articleModal').classList.add('active');
         }
 
@@ -578,7 +545,6 @@
             document.getElementById('articleModal').classList.remove('active');
         }
 
-        // Close on outside click
         window.onclick = function (event) {
             if (event.target.classList.contains('modal-overlay')) {
                 event.target.classList.remove('active');
@@ -586,6 +552,5 @@
         }
     </script>
 </body>
-
 
 </html>
